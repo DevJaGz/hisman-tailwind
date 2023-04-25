@@ -9,7 +9,7 @@ export enum AUTHENTICATION_ROUTE_NAMES {
   REGISTER = 'register',
 }
 
-const routes: Routes = [
+const ROUTES: Routes = [
   {
     path: AUTHENTICATION_ROUTE_NAMES.BLANK,
     redirectTo: AUTHENTICATION_ROUTE_NAMES.LOGIN,
@@ -26,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(ROUTES)],
   exports: [RouterModule],
 })
 export class AuthenticationRoutingModule {}
