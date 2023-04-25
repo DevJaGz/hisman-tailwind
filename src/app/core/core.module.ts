@@ -5,9 +5,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { CorePageComponent } from './pages/core-page/core-page.component';
 
 @NgModule({
-  declarations: [
-    CorePageComponent
-  ],
+  declarations: [CorePageComponent],
   imports: [CoreRoutingModule, SharedModule],
   exports: [CoreRoutingModule],
 })
