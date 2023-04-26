@@ -11,5 +11,13 @@
 	"singleAttributePerLine": true,
 	"endOfLine": "auto",
 	"embeddedLanguageFormatting": "auto",
-	"htmlWhitespaceSensitivity": "css"
+	"htmlWhitespaceSensitivity": "css",
+	"overrides": [
+		{
+			"files": "src/**/*.html",
+			"options": {
+				"printWidth": 120
+			}
+		}
+	]
 }
