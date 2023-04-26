@@ -42,7 +42,7 @@ export class AppThemeService {
     const currentTheme = this.localStorageService.getItem(THEME_KEY);
     const isCurrentThemDark = currentTheme === THEME.DARK;
     const isThemeAlreadySaved = this.localStorageService.existKey(THEME_KEY);
-    const isDarkPrefered = this.windowService.isDarkPreferedTheme;
+    const isDarkPrefered = this.windowService.isDarkPreferredTheme;
 
     if (isCurrentThemDark || (!isThemeAlreadySaved && isDarkPrefered)) {
       this.setDark();
