@@ -3,3 +3,7 @@ body {
 	height: 100%;
 	font-family: 'Nunito', sans-serif;
 }
+
+body * {
+	@apply transition-colors duration-75;
+}
