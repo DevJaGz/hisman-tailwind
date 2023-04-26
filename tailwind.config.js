@@ -3,7 +3,11 @@ module.exports = {
 	content: ['./src/**/*.{html,ts}'],
 	darkMode: ['class', '[data-theme="dark"]'],
 	theme: {
-		extend: {},
+		extend: {
+			colors: {
+				'google-dark': '#4285F4',
+			},
+		},
 	},
 	daisyui: {
 		themes: [
