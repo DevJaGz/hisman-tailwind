@@ -8,27 +8,35 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class AppThemeService {
-  constructor(
-    private localStorageService: LocalStorageService,
-    private windowService: WindowService
-  ) {}
+  /**
+   * Notify the current theme
+   */
+  private currentThemeNotifier$ = new BehaviorSubject(THEME.LIGHT);
 
-  private readonly defaultTheme = THEME.DARK;
-
-  private _currentTheme$ = new BehaviorSubject(this.defaultTheme);
-
+  /**
+   * Current theme in the app
+   */
   get currentTheme$(): Observable<THEME> {
-    return this._currentTheme$.asObservable();
+    return this.currentThemeNotifier$.asObservable();
   }
 
+  /**
+   * True if the current theme is dark
+   */
   get isDarkTheme$(): Observable<boolean> {
     return this.currentTheme$.pipe(
       map(currentTheme => currentTheme === THEME.DARK)
     );
   }
 
+  constructor(
+    private localStorageService: LocalStorageService,
+    private windowService: WindowService
+  ) {}
+
   /**
-   * Set theme based on the prefer user color schema. Default is Dark
+   * Set theme based on the user preferences or the last stored schema.
+   * If there is no user preference or the theme has not been saved yet, then theme will be Light by default.
    */
   setAuto() {
     const currentTheme = this.localStorageService.getItem(THEME_KEY);
@@ -43,20 +51,29 @@ export class AppThemeService {
     }
   }
 
+  /**
+   * Set current theme to light
+   */
   setLight() {
     const value = THEME.LIGHT;
     document.documentElement.setAttribute('data-theme', value);
-    this.saveCurrentTheme(value);
+    this.themeChangeHandler(value);
   }
 
+  /**
+   * Set current theme to dark
+   */
   setDark() {
     const value = THEME.DARK;
     document.documentElement.setAttribute('data-theme', value);
-    this.saveCurrentTheme(value);
+    this.themeChangeHandler(value);
   }
 
+  /**
+   * Toggle current theme
+   */
   toogle() {
-    const { _currentTheme$ } = this;
+    const { currentThemeNotifier$: _currentTheme$ } = this;
     const currentTheme = _currentTheme$.value;
     if (currentTheme === THEME.DARK) {
       this.setLight();
@@ -65,12 +82,20 @@ export class AppThemeService {
     }
   }
 
-  private saveCurrentTheme(value: THEME) {
+  /**
+   * Handle the logic when the current theme has been changed
+   * @param value - New theme value
+   */
+  private themeChangeHandler(value: THEME) {
     this.updateCurrentTheme(value);
     this.localStorageService.setItem(THEME_KEY, value);
   }
 
+  /**
+   * Update the current theme
+   * @param value - New theme value
+   */
   private updateCurrentTheme(value: THEME) {
-    this._currentTheme$.next(value);
+    this.currentThemeNotifier$.next(value);
   }
 }
