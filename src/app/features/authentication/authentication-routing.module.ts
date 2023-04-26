@@ -4,29 +4,29 @@ import { LoginPageComponent } from '@features/authentication/pages/login-page/lo
 import { RegisterPageComponent } from '@features/authentication/pages/register-page/register-page.component';
 
 export enum AUTHENTICATION_ROUTE_NAMES {
-  BLANK = '',
-  LOGIN = 'login',
-  REGISTER = 'register',
+	BLANK = '',
+	LOGIN = 'login',
+	REGISTER = 'register',
 }
 
 const ROUTES: Routes = [
-  {
-    path: AUTHENTICATION_ROUTE_NAMES.BLANK,
-    redirectTo: AUTHENTICATION_ROUTE_NAMES.LOGIN,
-    pathMatch: 'full',
-  },
-  {
-    path: AUTHENTICATION_ROUTE_NAMES.LOGIN,
-    component: LoginPageComponent,
-  },
-  {
-    path: AUTHENTICATION_ROUTE_NAMES.REGISTER,
-    component: RegisterPageComponent,
-  },
+	{
+		path: AUTHENTICATION_ROUTE_NAMES.BLANK,
+		redirectTo: AUTHENTICATION_ROUTE_NAMES.LOGIN,
+		pathMatch: 'full',
+	},
+	{
+		path: AUTHENTICATION_ROUTE_NAMES.LOGIN,
+		component: LoginPageComponent,
+	},
+	{
+		path: AUTHENTICATION_ROUTE_NAMES.REGISTER,
+		component: RegisterPageComponent,
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES)],
-  exports: [RouterModule],
+	imports: [RouterModule.forChild(ROUTES)],
+	exports: [RouterModule],
 })
 export class AuthenticationRoutingModule {}

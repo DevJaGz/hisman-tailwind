@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ThemeSwitcherComponent } from '@shared/components/theme-switcher/theme-switcher.component';
 
 @NgModule({
-  declarations: [ThemeSwitcherComponent],
-  imports: [CommonModule, FormsModule],
-  exports: [ThemeSwitcherComponent],
+	declarations: [ThemeSwitcherComponent],
+	imports: [CommonModule, FormsModule],
+	exports: [ThemeSwitcherComponent],
 })
 export class SharedModule {}
