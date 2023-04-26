@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class WindowService {
   private readonly _window = window;
 
-  get isPreferedThemeDark(): boolean {
+  get isDarkPreferedTheme(): boolean {
     return this._window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 }

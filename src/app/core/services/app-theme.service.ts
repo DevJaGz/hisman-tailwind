@@ -33,9 +33,10 @@ export class AppThemeService {
   setAuto() {
     const currentTheme = this.localStorageService.getItem(THEME_KEY);
     const isCurrentThemDark = currentTheme === THEME.DARK;
-    const isThemeNotSavedYet = !this.localStorageService.existKey(THEME_KEY);
-    const isDarkPrefered = this.windowService.isPreferedThemeDark;
-    if (isCurrentThemDark || (isThemeNotSavedYet && isDarkPrefered)) {
+    const isThemeAlreadySaved = this.localStorageService.existKey(THEME_KEY);
+    const isDarkPrefered = this.windowService.isDarkPreferedTheme;
+
+    if (isCurrentThemDark || (!isThemeAlreadySaved && isDarkPrefered)) {
       this.setDark();
     } else {
       this.setLight();
