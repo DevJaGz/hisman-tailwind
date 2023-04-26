@@ -15,4 +15,8 @@ export class LocalStorageService {
     }
     return item as string;
   }
+
+  existKey(key: string): boolean {
+    return key in localStorage;
+  }
 }
