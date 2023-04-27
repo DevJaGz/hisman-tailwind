@@ -3,10 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { CoreModule } from 'src/app/core/core.module';
 import { AppComponent } from './app.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
 	declarations: [AppComponent],
-	imports: [BrowserModule, CoreModule],
+	imports: [
+		BrowserModule,
+		CoreModule,
+		provideFirebaseApp(() => initializeApp(environment.firebase)),
+		provideAuth(() => getAuth()),
+		provideFirestore(() => getFirestore()),
+		provideMessaging(() => getMessaging()),
+		provideStorage(() => getStorage()),
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

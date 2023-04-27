@@ -44,3 +44,8 @@ Thumbs.db
 
 #angular cache
 .angular
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
