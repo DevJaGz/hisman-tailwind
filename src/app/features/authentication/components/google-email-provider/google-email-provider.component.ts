@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AuthenticationBridgeService } from '@features/authentication/services/authentication-bridge.service';
+import { Router } from '@angular/router';
+import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
+import { AuthenticationBridgeService } from '@core/services/authentication/authentication-bridge.service';
 
 @Component({
 	selector: 'app-google-email-provider',
@@ -8,13 +10,11 @@ import { AuthenticationBridgeService } from '@features/authentication/services/a
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoogleEmailProviderComponent {
-	constructor(private bridge: AuthenticationBridgeService) {}
+	constructor(private bridge: AuthenticationBridgeService, private router: Router) {}
 
 	login() {
-		this.bridge.loginWithGoogleProvider().subscribe();
-	}
-
-	logOutTemp() {
-		this.bridge.logOut().subscribe();
+		this.bridge.loginWithGoogleProvider().subscribe({
+			next: () => this.router.navigate([CORE_ROUTE_NAMES.BLANK]),
+		});
 	}
 }

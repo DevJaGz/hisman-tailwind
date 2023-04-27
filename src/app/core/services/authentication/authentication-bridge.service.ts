@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IOwner } from '@core/interfaces/user.interface';
+import { IOwner } from '@core/interfaces/users.interface';
 import { AuthenticationRepository } from '@core/repositories/authentication.repository';
 import { Observable } from 'rxjs';
 

@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { AuthenticationRepository } from '@core/repositories/authentication.repository';
-import { AuthenticationBridgeService } from '@features/authentication/services/authentication-bridge.service';
-import { AuthenticationService } from '@features/authentication/services/authentication.service';
 import { SharedModule } from '@shared/shared.module';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { GoogleEmailProviderComponent } from './components/google-email-provider/google-email-provider.component';
@@ -13,13 +10,5 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 @NgModule({
 	declarations: [LoginPageComponent, RegisterPageComponent, GoogleEmailProviderComponent, LandingProviderComponent],
 	imports: [AuthenticationRoutingModule, SharedModule],
-	providers: [
-		AuthenticationService,
-		AuthenticationBridgeService,
-		{
-			provide: AuthenticationRepository,
-			useExisting: AuthenticationService,
-		},
-	],
 })
 export class AuthenticationModule {}

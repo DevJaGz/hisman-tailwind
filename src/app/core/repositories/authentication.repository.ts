@@ -1,4 +1,4 @@
-import { IOwner } from '@core/interfaces/user.interface';
+import { IOwner } from '@core/interfaces/users.interface';
 import { Observable } from 'rxjs';
 
 export abstract class AuthenticationRepository {
