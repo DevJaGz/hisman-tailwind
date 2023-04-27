@@ -12,12 +12,14 @@ export class AppComponent implements OnInit {
 		private appThemeService: AppThemeService,
 		private authenticationBridgeService: AuthenticationBridgeService
 	) {
-		this.appThemeService.setAuto();
+		this.appThemeService.setTheme();
 	}
+
 	ngOnInit(): void {
 		this.authenticationBridgeService.getState$().subscribe({
 			next: owner => {
 				console.log('Owner', owner);
+				// TODO: Save state of the user
 			},
 		});
 	}

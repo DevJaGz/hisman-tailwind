@@ -9,6 +9,10 @@ import { Observable, map } from 'rxjs';
 export class AuthenticationService implements AuthenticationRepository {
 	constructor(private firebaseAuthService: FirebaseAuthService, private userAdapter: UserAdapter) {}
 
+	/**
+	 * Get the authentication state of the owner.
+	 * Return Null if the owner has not been authenticated.
+	 */
 	getAuthState$(): Observable<IOwner> {
 		return this.firebaseAuthService.getAuthState$().pipe(
 			map(user => {
@@ -17,10 +21,16 @@ export class AuthenticationService implements AuthenticationRepository {
 		);
 	}
 
+	/**
+	 * Log out the owner from the app
+	 */
 	logOut$(): Observable<void> {
 		return this.firebaseAuthService.logOut();
 	}
 
+	/**
+	 * Log in the owner using the google email provider
+	 */
 	loginWithGoogleProvider$(): Observable<IOwner> {
 		return this.firebaseAuthService.loginWithGoogleProvider$().pipe(
 			map(res => {

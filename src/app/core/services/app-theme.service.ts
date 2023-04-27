@@ -33,7 +33,7 @@ export class AppThemeService {
 	 * Set theme based on the user preferences or the last stored schema.
 	 * If there is no user preference or the theme has not been saved yet, then theme will be Light by default.
 	 */
-	setAuto() {
+	setTheme() {
 		const currentTheme = this.localStorageService.getItem(THEME_KEY);
 		const isCurrentThemDark = currentTheme === THEME.DARK;
 		const isThemeAlreadySaved = this.localStorageService.existKey(THEME_KEY);

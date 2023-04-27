@@ -9,6 +9,9 @@ import { Observable, from, of } from 'rxjs';
 export class FirebaseAuthService {
 	constructor(private auth: Auth) {}
 
+	/**
+	 * Get the current authentication state of the user.
+	 */
 	getAuthState$(): Observable<IUser> {
 		const { auth } = this;
 		if (auth) {
@@ -17,6 +20,9 @@ export class FirebaseAuthService {
 		return of(null);
 	}
 
+	/**
+	 * Show the pop-up window to log in with the Google email
+	 */
 	loginWithGoogleProvider$(): Observable<IUserCredential> {
 		const { auth } = this;
 		if (auth) {
@@ -30,6 +36,10 @@ export class FirebaseAuthService {
 		return of();
 	}
 
+	/**
+	 * Log out the user.
+	 * This produces the authentication state be Null.
+	 */
 	logOut() {
 		const { auth } = this;
 		if (auth) {
