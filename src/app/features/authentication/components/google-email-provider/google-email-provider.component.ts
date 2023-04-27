@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '@features/authentication/services/authentication.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AuthenticationBridgeService } from '@features/authentication/services/authentication-bridge.service';
 
 @Component({
 	selector: 'app-google-email-provider',
@@ -7,10 +7,14 @@ import { AuthenticationService } from '@features/authentication/services/authent
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GoogleEmailProviderComponent implements OnInit {
-	constructor(private authenticationService: AuthenticationService) {}
+export class GoogleEmailProviderComponent {
+	constructor(private bridge: AuthenticationBridgeService) {}
 
-	ngOnInit(): void {
-		this.authenticationService.loginWithGoogleEmailProvider().subscribe();
+	login() {
+		this.bridge.loginWithGoogleProvider().subscribe();
+	}
+
+	logOutTemp() {
+		this.bridge.logOut().subscribe();
 	}
 }

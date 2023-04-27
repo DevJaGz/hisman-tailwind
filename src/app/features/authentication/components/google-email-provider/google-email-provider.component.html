@@ -1,4 +1,5 @@
 <button
+	(click)="login()"
 	class="pl-[2px] pr-2 py-[2px] flex justify-center items-center gap-4 border border-slate-200 dark:border-google-dark dark:hover:border-black rounded-[2px] text-slate-700 dark:text-white bg-white dark:bg-google-dark hover:border-slate-400 hover:text-slate-900 hover:shadow dark:hover:shadow-none duration-500">
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +20,9 @@
 	</svg>
 
 	<span class="font-semibold"> Ingresar Con Google </span>
+</button>
+<button
+	class="mt-4 btn"
+	(click)="logOutTemp()">
+	Temp Logout
 </button>

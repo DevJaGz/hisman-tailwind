@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, GoogleAuthProvider, UserCredential, signInWithPopup } from '@angular/fire/auth';
-import { Observable, from } from 'rxjs';
+import { Auth, GoogleAuthProvider, UserCredential, signInWithPopup, signOut } from '@angular/fire/auth';
+import { Observable, from, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -8,8 +8,25 @@ import { Observable, from } from 'rxjs';
 export class FirebaseAuthService {
 	constructor(private auth: Auth) {}
 
-	loginWithGoogleEmailProvider(): Observable<UserCredential> {
-		const signInProvider = signInWithPopup(this.auth, new GoogleAuthProvider());
-		return from(signInProvider);
+	loginWithGoogleProvider$(): Observable<UserCredential> {
+		const { auth } = this;
+		if (auth) {
+			const provider = new GoogleAuthProvider();
+			provider.setCustomParameters({
+				prompt: 'select_account',
+			});
+			const service = signInWithPopup(auth, provider);
+			return from(service);
+		}
+		return of();
+	}
+
+	logOut() {
+		const { auth } = this;
+		if (auth) {
+			const service = signOut(auth);
+			return from(service);
+		}
+		return of();
 	}
 }
