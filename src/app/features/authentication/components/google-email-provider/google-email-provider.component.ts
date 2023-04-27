@@ -13,7 +13,7 @@ export class GoogleEmailProviderComponent {
 	constructor(private bridge: AuthenticationBridgeService, private router: Router) {}
 
 	login() {
-		this.bridge.loginWithGoogleProvider().subscribe({
+		this.bridge.loginWithGoogleProvider$().subscribe({
 			next: () => this.router.navigate([CORE_ROUTE_NAMES.BLANK]),
 		});
 	}

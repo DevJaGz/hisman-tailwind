@@ -13,7 +13,7 @@ export class CorePageComponent {
 	constructor(private bridge: AuthenticationBridgeService, private router: Router) {}
 
 	logOut() {
-		this.bridge.logOut().subscribe({
+		this.bridge.logOut$().subscribe({
 			next: () => this.router.navigate([CORE_ROUTE_NAMES.AUTHENTICATION]),
 		});
 	}

@@ -7,11 +7,15 @@ import { Observable } from 'rxjs';
 export class AuthenticationBridgeService {
 	constructor(private repository: AuthenticationRepository) {}
 
-	loginWithGoogleProvider(): Observable<IOwner> {
-		return this.repository.loginWithGoogleProvider();
+	loginWithGoogleProvider$(): Observable<IOwner> {
+		return this.repository.loginWithGoogleProvider$();
 	}
 
-	logOut() {
-		return this.repository.logOut();
+	logOut$(): Observable<void> {
+		return this.repository.logOut$();
+	}
+
+	getState$(): Observable<IOwner> {
+		return this.repository.getAuthState$();
 	}
 }
