@@ -7,7 +7,6 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AuthenticationRepository } from '@core/repositories/authentication.repository';
-import { AuthenticationBridgeService } from '@core/services/authentication/authentication-bridge.service';
 import { AuthenticationService } from '@core/services/authentication/authentication.service';
 import { CoreModule } from 'src/app/core/core.module';
 import { environment } from '../environments/environment';
@@ -25,8 +24,6 @@ import { AppComponent } from './app.component';
 		provideStorage(() => getStorage()),
 	],
 	providers: [
-		AuthenticationService,
-		AuthenticationBridgeService,
 		{
 			provide: AuthenticationRepository,
 			useExisting: AuthenticationService,

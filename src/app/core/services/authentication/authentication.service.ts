@@ -5,7 +5,9 @@ import { AuthenticationRepository } from '@core/repositories/authentication.repo
 import { FirebaseAuthService } from '@core/services/firebase/firebase-auth.service';
 import { Observable, map } from 'rxjs';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root',
+})
 export class AuthenticationService implements AuthenticationRepository {
 	constructor(private firebaseAuthService: FirebaseAuthService, private userAdapter: UserAdapter) {}
 

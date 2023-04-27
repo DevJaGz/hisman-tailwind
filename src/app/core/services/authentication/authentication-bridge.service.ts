@@ -3,7 +3,9 @@ import { IOwner } from '@core/interfaces/users.interface';
 import { AuthenticationRepository } from '@core/repositories/authentication.repository';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root',
+})
 export class AuthenticationBridgeService {
 	constructor(private repository: AuthenticationRepository) {}
 
