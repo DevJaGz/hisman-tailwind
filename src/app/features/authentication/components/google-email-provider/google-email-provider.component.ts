@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '@features/authentication/services/authentication.service';
 
 @Component({
 	selector: 'app-google-email-provider',
@@ -6,4 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GoogleEmailProviderComponent {}
+export class GoogleEmailProviderComponent implements OnInit {
+	constructor(private authenticationService: AuthenticationService) {}
+
+	ngOnInit(): void {
+		this.authenticationService.loginWithGoogleEmailProvider().subscribe();
+	}
+}
