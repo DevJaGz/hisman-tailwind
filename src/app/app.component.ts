@@ -18,6 +18,13 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.handleOwnerState();
+	}
+
+	/**
+	 * Handle the authentication and the data persistence of the owner
+	 */
+	handleOwnerState() {
 		this.authenticationBridgeService.getState$().subscribe({
 			next: owner => {
 				console.log('Owner', owner);
