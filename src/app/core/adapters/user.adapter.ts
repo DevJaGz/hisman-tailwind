@@ -7,7 +7,7 @@ import { IOwner, IUser } from '@core/interfaces/users.interface';
 export class UserAdapter {
 	toOwner(user: IUser): IOwner {
 		return {
-			id: user.uid,
+			uid: user.uid,
 			image: user.photoURL,
 			name: user.displayName,
 			account: {

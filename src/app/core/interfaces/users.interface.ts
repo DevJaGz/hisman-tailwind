@@ -15,7 +15,7 @@ export interface IStsTokenManager {
 }
 
 export interface IOwner {
-	id?: string;
+	uid?: string;
 	name: string;
 	image: string;
 	account: IAccount;

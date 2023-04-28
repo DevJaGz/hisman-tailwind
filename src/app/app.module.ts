@@ -7,7 +7,9 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AuthenticationRepository } from '@core/repositories/authentication.repository';
+import { OwnerRepository } from '@core/repositories/owner.repository';
 import { AuthenticationService } from '@core/services/authentication/authentication.service';
+import { OwnerService } from '@core/services/owner/owner.service';
 import { CoreModule } from 'src/app/core/core.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -27,6 +29,10 @@ import { AppComponent } from './app.component';
 		{
 			provide: AuthenticationRepository,
 			useExisting: AuthenticationService,
+		},
+		{
+			provide: OwnerRepository,
+			useExisting: OwnerService,
 		},
 	],
 	bootstrap: [AppComponent],
