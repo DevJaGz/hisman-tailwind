@@ -21,13 +21,12 @@ export class AppComponent implements OnInit {
 		this.authenticationBridgeService.getState$().subscribe({
 			next: owner => {
 				console.log('Owner', owner);
+				// If there is owner, then the Authentication was succesffully
 				if (owner) {
+					// Update/Create the owner in Firestore
 					this.ownerBridgeService.upsert(owner).subscribe({
-						next: data => {
-							console.log('data', data);
-						},
-						complete: () => console.log('COMPLETE'),
-					});
+						next: () => alert(`Welcome ${owner.name.toUpperCase()}`),
+					}); // TODO: Show a welcome using a toast
 				}
 			},
 		});
