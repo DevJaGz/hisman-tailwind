@@ -4,7 +4,9 @@ import {
 	DocumentSnapshot,
 	Firestore,
 	Query,
+	addDoc,
 	collection,
+	collectionData,
 	doc,
 	getDoc,
 	getDocs,
@@ -13,7 +15,7 @@ import {
 	where,
 } from '@angular/fire/firestore';
 import { ID } from '@core/constants/users.constant';
-import { EMPTY, Observable, from, map, switchMap } from 'rxjs';
+import { Observable, from, map, switchMap } from 'rxjs';
 import { ErrorHandlingService } from '../errors/error-handling.service';
 
 @Injectable({
@@ -64,8 +66,7 @@ export class FirestoreService {
 				}
 
 				// If the document is not found, then create/add the document in Firestore and return the data in it
-				// return from(addDoc(collectionRef, documentData)).pipe(switchMap(() => collectionData(documentQuery)));
-				return EMPTY;
+				return from(addDoc(collectionRef, documentData)).pipe(switchMap(() => collectionData(documentQuery)));
 			}),
 			this.errorHandlingService.handleFirebase()
 		);
