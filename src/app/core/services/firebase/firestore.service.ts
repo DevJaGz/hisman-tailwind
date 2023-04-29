@@ -3,6 +3,7 @@ import {
 	DocumentData,
 	DocumentSnapshot,
 	Firestore,
+	Query,
 	addDoc,
 	collection,
 	collectionData,
@@ -13,6 +14,7 @@ import {
 	setDoc,
 	where,
 } from '@angular/fire/firestore';
+import { ID } from '@core/constants/users.constant';
 import { Observable, from, map, switchMap } from 'rxjs';
 
 @Injectable({
@@ -28,11 +30,15 @@ export class FirestoreService {
 	 * @param queryProp - Query property inside the documentData to make the match in the query
 	 * @returns Document data as observable (Emit only once)
 	 */
-	upsertDocument(collectionName: string, documentData: DocumentData, queryProp: string): Observable<DocumentData> {
+	upsertDocument(
+		collectionName: string,
+		documentData: DocumentData,
+		matchQuery?: Query<DocumentData>
+	): Observable<DocumentData> {
 		// Reference of the collection in the Firestore
 		const collectionRef = collection(this.firestore, collectionName);
 		// Query to find the document
-		const documentQuery = query(collectionRef, where(queryProp, '==', documentData[queryProp]));
+		const documentQuery = matchQuery ? matchQuery : query(collectionRef, where(ID, '==', documentData[ID]));
 		// Get the documents that match the query
 		return from(getDocs(documentQuery)).pipe(
 			switchMap(querySnapshot => {

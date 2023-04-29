@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { ID } from '@core/constants/users.constant';
 import { IOwner } from '@core/interfaces/users.interface';
 import { OwnerRepository } from '../../repositories/owner.repository';
 import { FirestoreService } from '../firebase/firestore.service';
@@ -15,6 +14,6 @@ export class OwnerService implements OwnerRepository {
 
 	upsert(owner: IOwner) {
 		const { firestoreService, collectionName } = this;
-		return firestoreService.upsertDocument(collectionName, owner, ID);
+		return firestoreService.upsertDocument(collectionName, owner);
 	}
 }
