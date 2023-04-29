@@ -4,9 +4,7 @@ import {
 	DocumentSnapshot,
 	Firestore,
 	Query,
-	addDoc,
 	collection,
-	collectionData,
 	doc,
 	getDoc,
 	getDocs,
@@ -15,13 +13,14 @@ import {
 	where,
 } from '@angular/fire/firestore';
 import { ID } from '@core/constants/users.constant';
-import { Observable, from, map, switchMap } from 'rxjs';
+import { EMPTY, Observable, from, map, switchMap } from 'rxjs';
+import { ErrorHandlingService } from '../errors/error-handling.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class FirestoreService {
-	constructor(private firestore: Firestore) {}
+	constructor(private firestore: Firestore, private errorHandlingService: ErrorHandlingService) {}
 
 	/**
 	 * Update a document, if the document does not exists, is created
@@ -65,8 +64,10 @@ export class FirestoreService {
 				}
 
 				// If the document is not found, then create/add the document in Firestore and return the data in it
-				return from(addDoc(collectionRef, documentData)).pipe(switchMap(() => collectionData(documentQuery)));
-			})
+				// return from(addDoc(collectionRef, documentData)).pipe(switchMap(() => collectionData(documentQuery)));
+				return EMPTY;
+			}),
+			this.errorHandlingService.handleFirebase()
 		);
 	}
 }
