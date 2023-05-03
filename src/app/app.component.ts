@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
 				// If there is owner, then the Authentication was succesffully
 				if (owner) {
 					this.alertService.showInfo('Bienvenido', this.userAdapter.adaptName(owner.name), {
-						displayingTime: 4000,
+						displayingTime: 0,
 					});
 					// Update/Create the owner in Firestore
 					this.ownerBridgeService.upsert(owner).subscribe();

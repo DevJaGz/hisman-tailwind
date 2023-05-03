@@ -1,26 +1,26 @@
 <ng-container *ngIf="(show$ | async) && { isInfo: isInfo$ | async, isSuccess: isSuccess$ | async } as alertType">
 	<div class="fixed bottom-10 right-4">
 		<div
-			class="alert shadow-lg block"
+			class="alert shadow-lg px-4 py-3 rounded-lg flex flex-row overflow-hidden max-w-full sm:max-w-[fit-content] ml-auto"
 			[class.alert-info]="alertType.isInfo"
 			[class.alert-success]="alertType.isSuccess">
-			<h4
-				class="font-bold"
-				*ngIf="title$ | async as title">
-				{{ title }}
-			</h4>
-			<div>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					class="stroke-current flex-shrink-0 w-6 h-6">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-				</svg>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				class="stroke-current flex-shrink-0 w-6 h-6">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+			</svg>
+			<div class="flex flex-col h-full items-start gap-0 max-w-full text-ellipsis">
+				<h4
+					class="font-bold"
+					*ngIf="title$ | async as title">
+					{{ title }}
+				</h4>
 				<p>{{ message$ | async }}</p>
 			</div>
 		</div>
