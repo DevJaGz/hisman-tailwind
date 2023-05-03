@@ -20,4 +20,15 @@ export class UserAdapter {
 			},
 		};
 	}
+
+	adaptName(name: string): string {
+		const separator = ' ';
+		return (
+			name
+				?.toLowerCase()
+				.split(separator)
+				.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+				.join(' ') || ''
+		);
+	}
 }

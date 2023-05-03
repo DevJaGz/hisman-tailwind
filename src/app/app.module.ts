@@ -10,6 +10,7 @@ import { AuthenticationRepository } from '@core/repositories/authentication.repo
 import { OwnerRepository } from '@core/repositories/owner.repository';
 import { AuthenticationService } from '@core/services/authentication/authentication.service';
 import { OwnerService } from '@core/services/owner/owner.service';
+import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
 	imports: [
 		BrowserModule,
 		CoreModule,
+		SharedModule,
 		provideFirebaseApp(() => initializeApp(environment.firebase)),
 		provideAuth(() => getAuth()),
 		provideFirestore(() => getFirestore()),
