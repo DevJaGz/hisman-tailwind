@@ -28,7 +28,7 @@ export class UserAdapter {
 				?.toLowerCase()
 				.split(separator)
 				.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-				.join(' ') || ''
+				.join(separator) || ''
 		);
 	}
 }
