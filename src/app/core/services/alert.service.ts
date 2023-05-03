@@ -18,13 +18,14 @@ export enum ALERT_TYPE {
 	WARNING = 'warning',
 	ERROR = 'error',
 	INFO = 'info',
+	NULL = 'empty',
 }
 
 const initState: IAlert = {
 	show: false,
 	message: null,
 	title: null,
-	type: ALERT_TYPE.INFO,
+	type: ALERT_TYPE.NULL,
 	options: {
 		displayingTime: 0,
 	},
@@ -41,7 +42,22 @@ export class AlertService {
 		return this._alertEmitter$.asObservable();
 	}
 
-	showAlertSuccess(title: string, message: string, options: IAlertOption = {} as IAlertOption) {
+	showInfo(title: string, message: string, options: IAlertOption = {} as IAlertOption) {
+		const currentState = this._alertEmitter$.value;
+		this._alertEmitter$.next({
+			title,
+			message,
+			options: {
+				...currentState.options,
+				...options,
+			},
+			show: true,
+			type: ALERT_TYPE.INFO,
+		});
+		this.handleTimeout(options);
+	}
+
+	showSuccess(title: string, message: string, options: IAlertOption = {} as IAlertOption) {
 		const currentState = this._alertEmitter$.value;
 		this._alertEmitter$.next({
 			title,

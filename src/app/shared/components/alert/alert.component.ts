@@ -9,23 +9,23 @@ import { ALERT_TYPE, AlertService } from '../../../core/services/alert.service';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {
-	get show(): Observable<boolean> {
+	get show$(): Observable<boolean> {
 		return this.alertService.alert$.pipe(map(data => data.show));
 	}
 
-	get isInfo(): Observable<boolean> {
+	get isInfo$(): Observable<boolean> {
 		return this.alertService.alert$.pipe(map(data => data.type === ALERT_TYPE.INFO));
 	}
 
-	get isSuccess(): Observable<boolean> {
+	get isSuccess$(): Observable<boolean> {
 		return this.alertService.alert$.pipe(map(data => data.type === ALERT_TYPE.SUCCES));
 	}
 
-	get title(): Observable<string> {
+	get title$(): Observable<string> {
 		return this.alertService.alert$.pipe(map(data => data.title));
 	}
 
-	get message(): Observable<string> {
+	get message$(): Observable<string> {
 		return this.alertService.alert$.pipe(map(data => data.message));
 	}
 
