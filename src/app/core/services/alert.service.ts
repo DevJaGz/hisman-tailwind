@@ -73,6 +73,7 @@ export class AlertService {
 	}
 
 	closeAlert() {
+		clearTimeout(this.setTimeoutRef);
 		this._alertEmitter$.next(initState);
 	}
 

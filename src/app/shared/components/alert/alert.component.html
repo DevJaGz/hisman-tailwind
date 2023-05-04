@@ -1,9 +1,10 @@
-<ng-container *ngIf="(show$ | async) && { isInfo: isInfo$ | async, isSuccess: isSuccess$ | async } as alertType">
-	<div class="fixed bottom-10 right-4">
+<ng-container *ngIf="{ isInfo: isInfo$ | async, isSuccess: isSuccess$ | async } as alertType">
+	<div class="fixed bottom-10 right-4 ml-auto">
 		<div
-			class="alert shadow-lg px-4 py-3 rounded-lg flex flex-row overflow-hidden max-w-full sm:max-w-[fit-content] ml-auto"
+			class="alert shadow-lg px-4 py-3 rounded-lg flex flex-row overflow-hidden max-w-full sm:max-w-[fit-content] relative min-w-[300px] justify-start"
 			[class.alert-info]="alertType.isInfo"
-			[class.alert-success]="alertType.isSuccess">
+			[class.alert-success]="alertType.isSuccess"
+			[class.alert__show]="show$ | async">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
@@ -23,6 +24,19 @@
 				</h4>
 				<p>{{ message$ | async }}</p>
 			</div>
+			<svg
+				(click)="closeAlert()"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="w-6 h-6 absolute top-0 md:top-2 right-2 cursor-pointer">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M6 18L18 6M6 6l12 12" />
+			</svg>
 		</div>
 	</div>
 </ng-container>

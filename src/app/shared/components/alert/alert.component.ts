@@ -13,6 +13,10 @@ export class AlertComponent {
 		return this.alertService.alert$.pipe(map(data => data.show));
 	}
 
+	get hidden$(): Observable<boolean> {
+		return this.alertService.alert$.pipe(map(data => !data.show));
+	}
+
 	get isInfo$(): Observable<boolean> {
 		return this.alertService.alert$.pipe(map(data => data.type === ALERT_TYPE.INFO));
 	}
@@ -30,4 +34,8 @@ export class AlertComponent {
 	}
 
 	constructor(private alertService: AlertService) {}
+
+	closeAlert() {
+		this.alertService.closeAlert();
+	}
 }
