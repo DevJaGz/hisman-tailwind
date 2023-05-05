@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AppThemeService } from '@core/services/app-theme.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { AppThemeService } from '@core/services/app-theme.service';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeSwitcherComponent {
+	@Input() widthClass = 'w-9';
+	@Input() heightClass = 'h-9';
 	isDarkTheme$ = this.appThemeService.isDarkTheme$;
 
 	constructor(private appThemeService: AppThemeService) {}

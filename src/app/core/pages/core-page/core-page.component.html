@@ -1,7 +1,37 @@
-<p>core-page works!</p>
-<button
-	class="btn btn-primary"
-	(click)="logOut()">
-	TEMP LOG OUT
-</button>
+<div class="navbar bg-base-100">
+	<div class="flex-1">
+		<a class="btn btn-ghost normal-case text-2xl hisman-font">HisMan</a>
+	</div>
+	<div class="flex-none">
+		<div class="mr-4 mt-2">
+			<app-theme-switcher
+				widthClass="w-7"
+				heightClass="h-7"></app-theme-switcher>
+		</div>
+		<div class="dropdown dropdown-end">
+			<label
+				tabindex="0"
+				class="btn btn-ghost btn-circle avatar">
+				<div class="w-10 rounded-full">
+					<!-- TODO: SET IMAAGE -->
+					<img
+						src="https://lh3.googleusercontent.com/a/AGNmyxb6sNCZyPttSrIHjL8pwvGgWdlWWt9gzmrbWx7vjg=s96-c"
+						alt="Owner Image" />
+				</div>
+			</label>
+			<ul
+				tabindex="0"
+				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 dark:bg-base-200 rounded-box w-52">
+				<!-- <li>
+					<a class="justify-between">
+						Profile
+						<span class="badge">New</span>
+					</a>
+				</li>
+				<li><a>Settings</a></li> -->
+				<li (click)="logOut()"><a>Salir</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 <router-outlet></router-outlet>
