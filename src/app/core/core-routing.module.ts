@@ -6,6 +6,7 @@ import { CorePageComponent } from '@core/pages/core-page/core-page.component';
 export enum CORE_ROUTE_NAMES {
 	BLANK = '',
 	AUTHENTICATION = 'auth',
+	DASHBOARD = 'dashboard',
 	NOT_FOUND = '**',
 }
 
@@ -14,7 +15,17 @@ const ROUTES: Routes = [
 		path: CORE_ROUTE_NAMES.BLANK,
 		component: CorePageComponent,
 		...canActivate(() => redirectUnauthorizedTo([CORE_ROUTE_NAMES.AUTHENTICATION])), // Redirect to AUTHENTICATION if the user is not logged
-		children: [],
+		children: [
+			{
+				path: CORE_ROUTE_NAMES.BLANK,
+				pathMatch: 'full',
+				redirectTo: CORE_ROUTE_NAMES.DASHBOARD,
+			},
+			{
+				path: CORE_ROUTE_NAMES.DASHBOARD,
+				loadChildren: () => import('@features/dashboard/dashboard.module').then(m => m.DashboardModule),
+			},
+		],
 	},
 	{
 		path: CORE_ROUTE_NAMES.AUTHENTICATION,
