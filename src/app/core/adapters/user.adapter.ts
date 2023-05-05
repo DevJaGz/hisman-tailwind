@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { IOwner, IUser } from '@core/interfaces/users.interface';
+import { IDocument } from '@core/interfaces/document.interface';
+import { IOwner, IUser, IUserOwner } from '@core/interfaces/users.interface';
+import { IVehicle } from '@core/interfaces/vehicle.interface';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UserAdapter {
-	toPartalOwner(user: IUser): Partial<IOwner> {
+	toPartalOwner(user: IUser): IUserOwner {
 		return {
 			uid: user.uid,
 			image: user.photoURL,
@@ -24,16 +26,17 @@ export class UserAdapter {
 	toNewOwner(user: IUser): IOwner {
 		return {
 			...this.toPartalOwner(user),
-			vehicles: [],
-		} as IOwner;
+			vehicles: [] as IVehicle[],
+			documents: [] as IDocument[],
+		};
 	}
 
 	toUpdateOwner(user: IUser, owner: IOwner): IOwner {
 		return {
 			...this.toPartalOwner(user),
-			name: 'July',
 			vehicles: owner.vehicles,
-		} as IOwner;
+			documents: owner.documents,
+		};
 	}
 
 	adaptName(name: string): string {

@@ -1,4 +1,5 @@
 import { User, UserCredential } from '@angular/fire/auth';
+import { IDocument } from '@core/interfaces/document.interface';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
 
 export interface IUserCredential extends UserCredential {
@@ -15,12 +16,16 @@ export interface IStsTokenManager {
 	expirationTime: number;
 }
 
-export interface IOwner {
+export interface IUserOwner {
 	uid?: string;
 	name: string;
 	image: string;
 	account: IAccount;
+}
+
+export interface IOwner extends IUserOwner {
 	vehicles: IVehicle[];
+	documents: IDocument[];
 }
 
 export interface IAccount {

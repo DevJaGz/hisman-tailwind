@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
 	handleOwnerState() {
 		this.authenticationBridgeService.getState$().subscribe({
 			next: user => {
-				console.log('Owner', user);
 				this.blockUI.stop(); // Stop blocking
 				// If there is owner, then the Authentication was succesffully
 				if (user) {
