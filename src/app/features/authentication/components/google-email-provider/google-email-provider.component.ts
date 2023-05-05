@@ -17,11 +17,12 @@ export class GoogleEmailProviderComponent {
 	constructor(private bridge: AuthenticationBridgeService, private router: Router) {}
 
 	login() {
+		this.blockUI.start('Esperando Autenticación...'); // It starts here and stop in the src/app/app.component.ts
 		this.bridge.loginWithGoogleProvider$().subscribe({
 			next: () => {
-				this.blockUI.start(); // It starts here and stop in the src/app/app.component.ts
 				this.router.navigate([CORE_ROUTE_NAMES.BLANK]);
 			},
+			error: () => this.blockUI.stop(),
 		});
 	}
 }
