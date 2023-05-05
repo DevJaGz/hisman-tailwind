@@ -1,4 +1,5 @@
 import { User, UserCredential } from '@angular/fire/auth';
+import { IVehicle } from '@core/interfaces/vehicle.interface';
 
 export interface IUserCredential extends UserCredential {
 	user: IUser;
@@ -19,6 +20,7 @@ export interface IOwner {
 	name: string;
 	image: string;
 	account: IAccount;
+	vehicles: IVehicle[];
 }
 
 export interface IAccount {

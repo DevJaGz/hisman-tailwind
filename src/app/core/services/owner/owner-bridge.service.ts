@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IOwner } from '@core/interfaces/users.interface';
+import { IOwner, IUser } from '@core/interfaces/users.interface';
 import { OwnerRepository } from '@core/repositories/owner.repository';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class OwnerBridgeService {
 	constructor(private repository: OwnerRepository) {}
 
-	upsert(owner: IOwner): Observable<IOwner> {
-		return this.repository.upsert(owner);
+	upsert(user: IUser): Observable<IOwner> {
+		return this.repository.upsert(user);
 	}
 }

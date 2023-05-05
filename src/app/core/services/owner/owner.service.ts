@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { IOwner } from '@core/interfaces/users.interface';
-import { Observable } from 'rxjs';
+import { DocumentReference } from '@angular/fire/firestore';
+import { UserAdapter } from '@core/adapters/user.adapter';
+import { IOwner, IUser } from '@core/interfaces/users.interface';
+import { Observable, switchMap } from 'rxjs';
 import { OwnerRepository } from '../../repositories/owner.repository';
 import { FirestoreService } from '../firebase/firestore.service';
 
@@ -11,10 +13,22 @@ import { FirestoreService } from '../firebase/firestore.service';
 export class OwnerService implements OwnerRepository {
 	private collectionName = 'owners';
 
-	constructor(private firestoreService: FirestoreService) {}
+	constructor(private firestoreService: FirestoreService, private userAdapter: UserAdapter) {}
 
-	upsert(owner: IOwner): Observable<IOwner> {
+	upsert(user: IUser): Observable<IOwner> {
 		const { firestoreService, collectionName } = this;
-		return firestoreService.upsertDocument(collectionName, owner) as Observable<IOwner>;
+		const { uid } = user;
+		return firestoreService.getDocumentByUID(collectionName, uid).pipe(
+			switchMap(doc => {
+				if (doc) {
+					const owner = doc.data() as IOwner;
+					const docRef = doc.ref as DocumentReference<IOwner>;
+					const newOwner: IOwner = this.userAdapter.toUpdateOwner(user, owner);
+					return this.firestoreService.setDocument<IOwner>(docRef, newOwner);
+				}
+				const newOwner: IOwner = this.userAdapter.toNewOwner(user);
+				return this.firestoreService.createDocumentByUID<IOwner>(collectionName, newOwner);
+			})
+		);
 	}
 }

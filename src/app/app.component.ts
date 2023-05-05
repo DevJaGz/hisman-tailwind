@@ -40,16 +40,16 @@ export class AppComponent implements OnInit {
 	 */
 	handleOwnerState() {
 		this.authenticationBridgeService.getState$().subscribe({
-			next: owner => {
-				console.log('Owner', owner);
+			next: user => {
+				console.log('Owner', user);
 				this.blockUI.stop(); // Stop blocking
 				// If there is owner, then the Authentication was succesffully
-				if (owner) {
-					this.alertService.showInfo('Bienvenido', this.userAdapter.adaptName(owner.name), {
+				if (user) {
+					this.alertService.showInfo('Bienvenido', this.userAdapter.adaptName(user.displayName), {
 						displayingTime: 4000,
 					});
 					// Update/Create the owner in Firestore
-					this.ownerBridgeService.upsert(owner).subscribe();
+					this.ownerBridgeService.upsert(user).subscribe();
 				}
 			},
 		});

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
 	DocumentData,
+	DocumentReference,
 	DocumentSnapshot,
 	Firestore,
 	Query,
+	QueryDocumentSnapshot,
 	addDoc,
 	collection,
 	collectionData,
@@ -70,5 +72,27 @@ export class FirestoreService {
 			}),
 			this.errorHandlingService.handleFirebase()
 		);
+	}
+
+	getDocumentByUID(collectionName: string, uid: string): Observable<QueryDocumentSnapshot<DocumentData>> {
+		// Reference of the collection in the Firestore
+		const collectionRef = collection(this.firestore, collectionName);
+		// Query to find the document
+		const documentQuery = query(collectionRef, where('uid', '==', uid));
+		return from(getDocs(documentQuery)).pipe(
+			map(querySnapshot => {
+				return querySnapshot.docs[0];
+			})
+		);
+	}
+
+	createDocumentByUID<T = DocumentData>(collectionName: string, documentData: T): Observable<T> {
+		// Reference of the collection in the Firestore
+		const collectionRef = collection(this.firestore, collectionName);
+		return from(addDoc(collectionRef, documentData)).pipe(map(() => documentData));
+	}
+
+	setDocument<T = DocumentData>(docRef: DocumentReference<T>, documentData: T): Observable<T> {
+		return from(setDoc(docRef, documentData, { merge: true })).pipe(map(() => documentData));
 	}
 }

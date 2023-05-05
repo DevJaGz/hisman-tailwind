@@ -5,7 +5,7 @@ import { IOwner, IUser } from '@core/interfaces/users.interface';
 	providedIn: 'root',
 })
 export class UserAdapter {
-	toOwner(user: IUser): IOwner {
+	toPartalOwner(user: IUser): Partial<IOwner> {
 		return {
 			uid: user.uid,
 			image: user.photoURL,
@@ -19,6 +19,21 @@ export class UserAdapter {
 				expirationTime: user.stsTokenManager.expirationTime,
 			},
 		};
+	}
+
+	toNewOwner(user: IUser): IOwner {
+		return {
+			...this.toPartalOwner(user),
+			vehicles: [],
+		} as IOwner;
+	}
+
+	toUpdateOwner(user: IUser, owner: IOwner): IOwner {
+		return {
+			...this.toPartalOwner(user),
+			name: 'July',
+			vehicles: owner.vehicles,
+		} as IOwner;
 	}
 
 	adaptName(name: string): string {

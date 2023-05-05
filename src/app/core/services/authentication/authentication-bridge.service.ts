@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IOwner } from '@core/interfaces/users.interface';
+import { IUser, IUserCredential } from '@core/interfaces/users.interface';
 import { AuthenticationRepository } from '@core/repositories/authentication.repository';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthenticationBridgeService {
 	constructor(private repository: AuthenticationRepository) {}
 
-	loginWithGoogleProvider$(): Observable<IOwner> {
+	loginWithGoogleProvider$(): Observable<IUserCredential> {
 		return this.repository.loginWithGoogleProvider$();
 	}
 
@@ -17,7 +17,7 @@ export class AuthenticationBridgeService {
 		return this.repository.logOut$();
 	}
 
-	getState$(): Observable<IOwner> {
+	getState$(): Observable<IUser> {
 		return this.repository.getAuthState$();
 	}
 }

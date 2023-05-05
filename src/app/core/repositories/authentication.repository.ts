@@ -1,8 +1,8 @@
-import { IOwner } from '@core/interfaces/users.interface';
+import { IUser, IUserCredential } from '@core/interfaces/users.interface';
 import { Observable } from 'rxjs';
 
 export abstract class AuthenticationRepository {
-	abstract loginWithGoogleProvider$(): Observable<IOwner>;
+	abstract loginWithGoogleProvider$(): Observable<IUserCredential>;
 	abstract logOut$(): Observable<void>;
-	abstract getAuthState$(): Observable<IOwner>;
+	abstract getAuthState$(): Observable<IUser>;
 }
