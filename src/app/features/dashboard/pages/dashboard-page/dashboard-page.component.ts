@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AppStateService } from '@core/store/app-state.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { skip } from 'rxjs';
+import { skip, take } from 'rxjs';
 
 @Component({
 	selector: 'app-dashboard-page',
@@ -17,7 +17,7 @@ export class DashboardPageComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.blockUI.start('Obteniendo datos...');
-		this.owner$.pipe(skip(1)).subscribe({
+		this.owner$.pipe(skip(1), take(1)).subscribe({
 			next: () => {
 				this.blockUI.stop();
 			},

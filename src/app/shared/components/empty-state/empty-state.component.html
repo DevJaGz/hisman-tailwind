@@ -2,8 +2,10 @@
 	<div class="hero-content text-center">
 		<div class="max-w-md flex flex-col items-center">
 			<img
+				width="300"
+				height="200"
 				class="mb-12 object-cover"
-				[src]="image || 'assets/images/svg/vehicle-compact.svg'"
+				[ngSrc]="image || 'assets/images/svg/vehicle-compact.svg'"
 				alt="Vehicle compact" />
 			<h1 class="text-5xl font-bold">{{ title }}</h1>
 			<p class="py-6">{{ message }}</p>

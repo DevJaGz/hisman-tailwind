@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ThemeSwitcherComponent } from '@shared/components/theme-switcher/theme-switcher.component';
@@ -7,7 +7,7 @@ import { EmptyStateComponent } from './components/empty-state/empty-state.compon
 
 @NgModule({
 	declarations: [ThemeSwitcherComponent, AlertComponent, EmptyStateComponent],
-	imports: [CommonModule, FormsModule],
-	exports: [ThemeSwitcherComponent, AlertComponent, EmptyStateComponent],
+	imports: [CommonModule, FormsModule, NgOptimizedImage],
+	exports: [ThemeSwitcherComponent, AlertComponent, EmptyStateComponent, NgOptimizedImage],
 })
 export class SharedModule {}
