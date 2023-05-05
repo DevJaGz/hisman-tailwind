@@ -1,7 +1,36 @@
-<div class="h-full">
-	<div
-		*blockUI="'block-ui-view'"
-		class="h-full overflow-hidden relative">
-		Owner: {{ owner$ | async | json }}
-	</div>
+<div class="h-full px-4 sm:px-0 pt-4 pb-8">
+	<ng-container *ngIf="owner$ | async as owner">
+		<ng-container *ngIf="owner?.vehicles?.length; else NoVehiclesTemplate"> My Vehicles </ng-container>
+	</ng-container>
 </div>
+
+<ng-template #NoVehiclesTemplate>
+	<div class="flex flex-col items-center mt-32">
+		<app-empty-state
+			title="No hay vehículos"
+			message="Actualmente no ha añadido ningún vehículo."
+			image="assets/images/svg/vehicle-compact.svg"></app-empty-state>
+		<button class="btn btn-outline">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="icon icon-tabler icon-tabler-car mr-2"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				stroke-width="2"
+				stroke="currentColor"
+				fill="none"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+				<path
+					stroke="none"
+					d="M0 0h24v24H0z"
+					fill="none"></path>
+				<path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+				<path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+				<path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+			</svg>
+			Añadir Vehículo
+		</button>
+	</div>
+</ng-template>

@@ -10,19 +10,18 @@ import { skip } from 'rxjs';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardPageComponent implements OnInit {
-	// Pass instance name to decorator
-	@BlockUI('block-ui-view') blockUIView: NgBlockUI;
+	@BlockUI() blockUI: NgBlockUI;
 	owner$ = this.appStateService.selectOwnerState$;
 
 	constructor(private appStateService: AppStateService) {}
 
 	ngOnInit(): void {
-		this.blockUIView.start('Obteniendo datos...');
+		this.blockUI.start('Obteniendo datos...');
 		this.owner$.pipe(skip(1)).subscribe({
 			next: () => {
-				this.blockUIView.stop();
+				this.blockUI.stop();
 			},
-			// error: () => this.blockUIView.stop(),
+			error: () => this.blockUI.stop(),
 		});
 	}
 }
