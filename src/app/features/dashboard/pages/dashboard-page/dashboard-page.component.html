@@ -1,1 +1,7 @@
-<p>dashboard-page works!</p>
+<div class="h-full">
+	<div
+		*blockUI="'block-ui-view'"
+		class="h-full overflow-hidden relative">
+		Owner: {{ owner$ | async | json }}
+	</div>
+</div>

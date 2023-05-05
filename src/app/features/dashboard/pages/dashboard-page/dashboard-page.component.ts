@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AppStateService } from '@core/store/app-state.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { skip } from 'rxjs';
 
 @Component({
 	selector: 'app-dashboard-page',
@@ -6,4 +9,20 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardPageComponent {}
+export class DashboardPageComponent implements OnInit {
+	// Pass instance name to decorator
+	@BlockUI('block-ui-view') blockUIView: NgBlockUI;
+	owner$ = this.appStateService.selectOwnerState$;
+
+	constructor(private appStateService: AppStateService) {}
+
+	ngOnInit(): void {
+		this.blockUIView.start('Obteniendo datos...');
+		this.owner$.pipe(skip(1)).subscribe({
+			next: () => {
+				this.blockUIView.stop();
+			},
+			// error: () => this.blockUIView.stop(),
+		});
+	}
+}

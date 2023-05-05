@@ -41,9 +41,9 @@ export class AppComponent implements OnInit {
 	handleOwnerState() {
 		this.authenticationBridgeService.getState$().subscribe({
 			next: user => {
-				this.blockUI.stop(); // Stop blocking
 				// If there is owner, then the Authentication was succesffully
 				if (user) {
+					this.blockUI.stop();
 					this.alertService.showInfo('Bienvenido', this.userAdapter.adaptName(user.displayName), {
 						displayingTime: 4000,
 					});
