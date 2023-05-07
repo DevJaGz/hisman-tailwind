@@ -10,7 +10,9 @@
 			title="No hay vehículos"
 			message="Actualmente no ha añadido ningún vehículo."
 			image="assets/images/svg/vehicle-compact.svg"></app-empty-state>
-		<button class="btn btn-outline">
+		<button
+			class="btn btn-outline"
+			(click)="addVehicle()">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="icon icon-tabler icon-tabler-car mr-2"

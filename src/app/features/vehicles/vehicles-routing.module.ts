@@ -1,7 +1,24 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes as ROUTES } from '@angular/router';
+import { AddVehiclePageComponent } from '@features/vehicles/pages/add-vehicle-page/add-vehicle-page.component';
 
-const routes: Routes = [];
+export enum VEHICLES_ROUTE_NAMES {
+	BLANK = '',
+	ADD = 'add',
+	VIEW = 'view/:id',
+}
+
+const routes: ROUTES = [
+	{
+		path: VEHICLES_ROUTE_NAMES.BLANK,
+		pathMatch: 'full',
+		redirectTo: VEHICLES_ROUTE_NAMES.ADD,
+	},
+	{
+		path: VEHICLES_ROUTE_NAMES.ADD,
+		component: AddVehiclePageComponent,
+	},
+];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
