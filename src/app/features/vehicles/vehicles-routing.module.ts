@@ -4,7 +4,7 @@ import { AddVehiclePageComponent } from '@features/vehicles/pages/add-vehicle-pa
 
 export enum VEHICLES_ROUTE_NAMES {
 	BLANK = '',
-	ADD = 'add',
+	ADD = 'new',
 	VIEW = 'view/:id',
 }
 
