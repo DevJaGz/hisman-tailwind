@@ -7,6 +7,17 @@ module.exports = {
 			colors: {
 				'google-dark': '#4285F4',
 			},
+			animation: {
+				fadeIn: 'fadeIn 1s ease-in-out',
+			},
+			keyframes: function (theme) {
+				return {
+					fadeIn: {
+						'0%': { opacity: theme('opacity.0') },
+						'100%': { opacity: theme('opacity.100') },
+					},
+				};
+			},
 		},
 	},
 	daisyui: {

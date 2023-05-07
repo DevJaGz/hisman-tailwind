@@ -10,20 +10,4 @@
 	.text-dark {
 		@apply text-neutral-200;
 	}
-
-	.alert {
-		opacity: 0;
-		transform: translateX(999px);
-		transition: all 0.3s ease-in-out;
-		& * {
-			opacity: 0;
-		}
-		&__show {
-			opacity: 1;
-			transform: translateX(0);
-			& * {
-				opacity: 1;
-			}
-		}
-	}
 }
