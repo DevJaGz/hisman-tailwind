@@ -10,7 +10,7 @@ import { OwnerBridgeService } from './core/services/owner/owner-bridge.service';
 	selector: 'app-root',
 	template: `
 		<block-ui message="Cargando">
-			<app-alert></app-alert>
+			<!-- <app-alert></app-alert> -->
 			<router-outlet></router-outlet>
 		</block-ui>
 	`,
