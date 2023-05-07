@@ -8,7 +8,7 @@ module.exports = {
 				'google-dark': '#4285F4',
 			},
 			animation: {
-				fadeIn: 'fadeIn 1s ease-in-out',
+				fadeIn: 'fadeIn .25s ease-in-out',
 			},
 			keyframes: function (theme) {
 				return {
