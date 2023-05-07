@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { VehicleFormService } from '@features/vehicles/services/vehicle-form.service';
 
 @Component({
 	selector: 'app-add-vehicle-page',
@@ -6,4 +8,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddVehiclePageComponent {}
+export class AddVehiclePageComponent implements OnInit {
+	form: FormGroup;
+
+	constructor(public formService: VehicleFormService) {}
+
+	ngOnInit(): void {
+		this.form = this.formService.createForm();
+	}
+}

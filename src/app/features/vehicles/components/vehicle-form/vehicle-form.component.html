@@ -1,89 +1,90 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-	<div class="form-control w-full max-w-full md:max-w-xs">
-		<label class="label">
-			<span class="label-text">Placa</span>
-		</label>
-		<input
-			type="text"
-			placeholder="Ej. COL123"
-			class="input input-bordered w-full" />
+<ng-container [formGroup]="formService.form">
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+		<div class="form-control w-full max-w-full md:max-w-xs">
+			<label class="label">
+				<span class="label-text">Placa</span>
+			</label>
+			<input
+				formControlName="license"
+				type="text"
+				placeholder="Ej. COL123"
+				class="input input-bordered w-full" />
+		</div>
+		<div class="form-control w-full max-w-full md:max-w-xs">
+			<label class="label">
+				<span class="label-text">Tipo</span>
+			</label>
+			<select
+				formControlName="type"
+				class="select select-bordered">
+				<option
+					*ngFor="let vehicleType of vehicleTypeList"
+					[value]="vehicleType.value">
+					{{ vehicleType.label }}
+				</option>
+			</select>
+		</div>
+		<div class="form-control w-full max-w-full md:max-w-xs">
+			<label class="label">
+				<span class="label-text">Apodo (Opcional)</span>
+			</label>
+			<input
+				formControlName="alias"
+				type="text"
+				placeholder="Ej. Mi Pichirilo"
+				class="input input-bordered w-full" />
+		</div>
+		<!-- <div class="form-control w-full max-w-full md:max-w-xs">
+      <label class="label">
+        <span class="label-text">Color (Opcional)</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Ej. Gris Plata"
+        class="input input-bordered w-full" />
+    </div> -->
+		<!-- <div class="form-control w-full max-w-full md:max-w-xs">
+      <label class="label">
+        <span class="label-text">Marca (Opcional)</span>
+      </label>
+      <select class="select select-bordered">
+        <option
+          disabled
+          selected>
+          Seleccione...
+        </option>
+        <option
+          *ngFor="let vehicleType of vehicleTypeList"
+          [value]="vehicleType.value">
+          {{ vehicleType.label }}
+        </option>
+      </select>
+    </div> -->
+		<!-- <div class="form-control w-full max-w-full md:max-w-xs">
+      <label class="label">
+        <span class="label-text">Modelo (Opcional)</span>
+      </label>
+      <select class="select select-bordered">
+        <option
+          disabled
+          selected>
+          Seleccione...
+        </option>
+        <option
+          *ngFor="let vehicleType of vehicleTypeList"
+          [value]="vehicleType.value">
+          {{ vehicleType.label }}
+        </option>
+      </select>
+    </div> -->
+		<!-- <div class="form-control w-full max-w-full md:max-w-xs">
+      <label class="label">
+        <span class="label-text">Imagen (Opcional)</span>
+      </label>
+      <input
+        type="file"
+        accept="image/jpeg, image/png, image/gif"
+        class="file-input w-full" />
+    </div> -->
 	</div>
-	<div class="form-control w-full max-w-full md:max-w-xs">
-		<label class="label">
-			<span class="label-text">Tipo</span>
-		</label>
-		<select class="select select-bordered">
-			<option
-				disabled
-				selected>
-				Seleccione...
-			</option>
-			<option
-				*ngFor="let vehicleType of vehicleTypeList"
-				[value]="vehicleType.value">
-				{{ vehicleType.label }}
-			</option>
-		</select>
-	</div>
-	<div class="form-control w-full max-w-full md:max-w-xs">
-		<label class="label">
-			<span class="label-text">Apodo (Opcional)</span>
-		</label>
-		<input
-			type="text"
-			placeholder="Ej. Mi Pichirilo"
-			class="input input-bordered w-full" />
-	</div>
-	<!-- <div class="form-control w-full max-w-full md:max-w-xs">
-		<label class="label">
-			<span class="label-text">Color (Opcional)</span>
-		</label>
-		<input
-			type="text"
-			placeholder="Ej. Gris Plata"
-			class="input input-bordered w-full" />
-	</div> -->
-	<!-- <div class="form-control w-full max-w-full md:max-w-xs">
-		<label class="label">
-			<span class="label-text">Marca (Opcional)</span>
-		</label>
-		<select class="select select-bordered">
-			<option
-				disabled
-				selected>
-				Seleccione...
-			</option>
-			<option
-				*ngFor="let vehicleType of vehicleTypeList"
-				[value]="vehicleType.value">
-				{{ vehicleType.label }}
-			</option>
-		</select>
-	</div> -->
-	<!-- <div class="form-control w-full max-w-full md:max-w-xs">
-		<label class="label">
-			<span class="label-text">Modelo (Opcional)</span>
-		</label>
-		<select class="select select-bordered">
-			<option
-				disabled
-				selected>
-				Seleccione...
-			</option>
-			<option
-				*ngFor="let vehicleType of vehicleTypeList"
-				[value]="vehicleType.value">
-				{{ vehicleType.label }}
-			</option>
-		</select>
-	</div> -->
-	<!-- <div class="form-control w-full max-w-full md:max-w-xs">
-		<label class="label">
-			<span class="label-text">Imagen (Opcional)</span>
-		</label>
-		<input
-			type="file"
-			accept="image/jpeg, image/png, image/gif"
-			class="file-input w-full" />
-	</div> -->
-</div>
+</ng-container>

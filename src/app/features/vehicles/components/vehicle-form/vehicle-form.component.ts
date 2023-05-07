@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
+import { VehicleFormService } from '@features/vehicles/services/vehicle-form.service';
 
 @Component({
 	selector: 'app-vehicle-form',
@@ -18,4 +19,6 @@ export class VehicleFormComponent {
 			label: 'Moto',
 		},
 	];
+
+	constructor(public formService: VehicleFormService) {}
 }
