@@ -1,4 +1,4 @@
-<div class="h-full px-4 sm:px-0 pt-4 pb-8">
+<div class="h-full pt-4 pb-8">
 	<ng-container *ngIf="owner$ | async as owner">
 		<ng-container *ngIf="owner?.vehicles?.length; else NoVehiclesTemplate"> My Vehicles </ng-container>
 	</ng-container>
