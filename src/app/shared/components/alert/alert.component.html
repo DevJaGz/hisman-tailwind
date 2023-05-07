@@ -1,5 +1,7 @@
 <ng-container *ngIf="{ isInfo: isInfo$ | async, isSuccess: isSuccess$ | async } as alertType">
-	<div class="fixed z-[40000] bottom-10 right-4 ml-auto">
+	<div
+		class="fixed z-[40000] bottom-10 right-4 ml-auto"
+		[class.-bottom-96]="notShow$ | async">
 		<div
 			class="alert shadow-lg px-4 py-3 rounded-lg flex flex-row overflow-hidden max-w-full sm:max-w-[fit-content] relative min-w-[300px] justify-start"
 			[class.alert-info]="alertType.isInfo"

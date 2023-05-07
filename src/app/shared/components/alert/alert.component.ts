@@ -13,6 +13,10 @@ export class AlertComponent {
 		return this.alertService.alert$.pipe(map(data => data.show));
 	}
 
+	get notShow$(): Observable<boolean> {
+		return this.alertService.alert$.pipe(map(data => !data.show));
+	}
+
 	get hidden$(): Observable<boolean> {
 		return this.alertService.alert$.pipe(map(data => !data.show));
 	}
