@@ -4,8 +4,8 @@ import { IDocument } from '@core/interfaces/document.interface';
 export interface IVehicle {
 	id?: string;
 	license: string;
-	color: string;
-	image: string;
+	color?: string;
+	image?: string;
 	type: VEHICLE_TYPE;
 	documents: IDocument[];
 }

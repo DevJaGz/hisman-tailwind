@@ -18,6 +18,7 @@ export class VehicleFormService extends FormModel {
 			license: [initValue.license || null, Validators.required],
 			type: [initValue.type || VEHICLE_TYPE.CAR, Validators.required],
 			alias: [initValue.alias || null],
+			documents: [initValue.documents || []],
 		});
 		super.afterFormCreated(form);
 		return form;
