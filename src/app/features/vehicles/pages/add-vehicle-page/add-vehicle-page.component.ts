@@ -37,11 +37,12 @@ export class AddVehiclePageComponent implements OnInit {
 
 	submitForm() {
 		const vehicle = this.formService.value;
+		this.blockUI.start('Añadiendo Vehículo...');
 		this.ownerBridgeService.addVehicle(vehicle).subscribe({
 			complete: () => {
 				this.blockUI.stop();
 				this.formService.reset(DEFAULT_VEHICLE_FORM_VALUE);
-				this.alertService.showSuccess('Excelente!', 'Tu vehículo ha sido agregado.', {
+				this.alertService.showSuccess('Excelente!', 'Tu vehículo ha sido añadido.', {
 					displayingTime: 8000,
 				});
 			},
