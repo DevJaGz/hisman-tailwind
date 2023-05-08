@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { DocumentReference } from '@angular/fire/firestore';
 import { UserAdapter } from '@core/adapters/user.adapter';
 import { IOwner, IUser } from '@core/interfaces/users.interface';
+import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { AppStateService } from '@core/store/app-state.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, map, switchMap, take } from 'rxjs';
 import { OwnerRepository } from '../../repositories/owner.repository';
 import { FirestoreService } from '../firebase/firestore.service';
 
@@ -19,6 +20,28 @@ export class OwnerService implements OwnerRepository {
 		private userAdapter: UserAdapter,
 		private appStateService: AppStateService
 	) {}
+
+	addVehicle(vehicle: IVehicle): Observable<IVehicle> {
+		return this.getOwnerDocument$().pipe(
+			map(doc => {
+				const owner = doc.data();
+				console.log('owner', owner);
+				if (doc) {
+					const owner = doc.data() as IOwner;
+					const docRef = doc.ref as DocumentReference<IOwner>;
+					const newOwner: IOwner = {
+						...owner,
+						vehicles: [...owner.vehicles, vehicle],
+					};
+					this.appStateService.setOwnerState(newOwner);
+					this.firestoreService.setDocument<IOwner>(docRef, newOwner);
+					return vehicle;
+				}
+				return null;
+			}),
+			take(1)
+		);
+	}
 
 	upsert(user: IUser): Observable<IOwner> {
 		const { firestoreService, collectionName } = this;
@@ -35,6 +58,15 @@ export class OwnerService implements OwnerRepository {
 				const newOwner: IOwner = this.userAdapter.toNewOwner(user);
 				this.appStateService.setOwnerState(newOwner);
 				return this.firestoreService.createDocumentByUID<IOwner>(collectionName, newOwner);
+			})
+		);
+	}
+
+	private getOwnerDocument$() {
+		const { firestoreService, collectionName } = this;
+		return this.appStateService.selectOwnerState$.pipe(
+			switchMap(({ uid }) => {
+				return firestoreService.getDocumentByUID(collectionName, uid).pipe(take(1));
 			})
 		);
 	}
