@@ -10,6 +10,23 @@
 				type="text"
 				placeholder="Ej. COL123"
 				class="input input-bordered w-full" />
+			<label class="label">
+				<span
+					class="label-text-alt text-error"
+					*ngIf="formService.hasLicenseAlreadyExistError"
+					>Ya tienes está placa en otro vehículo</span
+				>
+				<span
+					class="label-text-alt text-error"
+					*ngIf="formService.hasControlRequiredError('license')"
+					>Este campo es requerido</span
+				>
+				<span
+					class="label-text-alt text-error"
+					*ngIf="formService.hasControlMaxlengthError('license')"
+					>Ha superado el máximo de caracteres</span
+				>
+			</label>
 		</div>
 		<div class="form-control w-full max-w-full md:max-w-xs">
 			<label class="label">
@@ -34,6 +51,13 @@
 				type="text"
 				placeholder="Ej. Mi ChevroGINI"
 				class="input input-bordered w-full" />
+			<label class="label">
+				<span
+					class="label-text-alt text-error"
+					*ngIf="formService.hasControlMaxlengthError('alias')"
+					>Ha superado el máximo de caracteres</span
+				>
+			</label>
 		</div>
 		<!-- <div class="form-control w-full max-w-full md:max-w-xs">
       <label class="label">

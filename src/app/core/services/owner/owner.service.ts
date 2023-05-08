@@ -21,11 +21,23 @@ export class OwnerService implements OwnerRepository {
 		private appStateService: AppStateService
 	) {}
 
+	getVehicles$(): Observable<IVehicle[]> {
+		return this.getOwnerDocument$().pipe(
+			map(doc => {
+				if (doc) {
+					const owner = doc.data() as IOwner;
+					this.appStateService.setOwnerState(owner);
+					return owner.vehicles;
+				}
+				return null;
+			}),
+			take(1)
+		);
+	}
+
 	addVehicle(vehicle: IVehicle): Observable<IVehicle> {
 		return this.getOwnerDocument$().pipe(
 			map(doc => {
-				const owner = doc.data();
-				console.log('owner', owner);
 				if (doc) {
 					const owner = doc.data() as IOwner;
 					const docRef = doc.ref as DocumentReference<IOwner>;

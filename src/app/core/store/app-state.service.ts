@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DEFAULT_APP_STATE } from '@core/constants/app-state.constant';
 import { IAppState } from '@core/interfaces/app-state.interface';
 import { IOwner } from '@core/interfaces/users.interface';
+import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
@@ -12,6 +13,14 @@ export class AppStateService {
 
 	get selectOwnerState$(): Observable<IOwner> {
 		return this.appState$.asObservable().pipe(map(state => state.owner));
+	}
+
+	get selectVehicles$(): Observable<IVehicle[]> {
+		return this.selectOwnerState$.pipe(
+			map(owner => {
+				return owner?.vehicles;
+			})
+		);
 	}
 
 	setOwnerState(partialOwner: Partial<IOwner>) {

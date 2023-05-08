@@ -29,7 +29,6 @@ export class AddVehiclePageComponent implements OnInit {
 
 	submitForm() {
 		const vehicle = this.formService.value;
-		this.blockUI.start('Añadiendo Vehículo...');
 		this.ownerBridgeService.addVehicle(vehicle).subscribe({
 			complete: () => {
 				this.blockUI.stop();

@@ -5,4 +5,5 @@ import { IOwner, IUser } from '../interfaces/users.interface';
 export abstract class OwnerRepository {
 	abstract upsert(user: IUser): Observable<IOwner>;
 	abstract addVehicle(vehicle: IVehicle): Observable<IVehicle>;
+	abstract getVehicles$(): Observable<IVehicle[]>;
 }

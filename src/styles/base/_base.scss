@@ -7,3 +7,7 @@ body {
 body * {
 	@apply transition-colors duration-75;
 }
+
+input.ng-invalid.ng-dirty {
+	border: theme('colors.error') 1px solid;
+}
