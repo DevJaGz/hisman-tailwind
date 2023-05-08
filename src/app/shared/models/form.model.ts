@@ -3,7 +3,9 @@ import { FormControlStatus, FormGroup } from '@angular/forms';
 import { IVehicleForm } from '@features/vehicles/interfaces/vehicle-form.interface';
 import { Observable } from 'rxjs';
 
-export class FormModel {
+export abstract class FormModel {
+	abstract createForm(): FormGroup;
+
 	get form(): FormGroup {
 		return this._form;
 	}

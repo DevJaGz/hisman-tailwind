@@ -12,7 +12,7 @@ export class VehicleFormService extends FormModel {
 		super(ngZone);
 	}
 
-	createForm(initValue: IVehicleForm = {} as IVehicleForm) {
+	override createForm(initValue: IVehicleForm = {} as IVehicleForm) {
 		const { fb } = this;
 		const form = fb.group({
 			license: [initValue.license || null, Validators.required],
