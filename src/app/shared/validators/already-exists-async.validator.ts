@@ -8,6 +8,8 @@ export function alreadyExistsAsyncValidator(list$: Observable<string[]>): AsyncV
 			take(1),
 			map(list => {
 				if (control && list?.length) {
+					console.log('VALUE', list, control.value);
+
 					const value = control.value;
 					return list.includes(value)
 						? {

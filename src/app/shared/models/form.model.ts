@@ -29,6 +29,10 @@ export abstract class FormModel {
 		return control?.hasError(VALIDATOR_ERROR.MAX_LENGTH) && control.dirty;
 	}
 
+	reset(value?: unknown) {
+		value ? this._form.reset(value) : this._form.reset();
+	}
+
 	protected _form: FormGroup;
 
 	protected afterFormCreated(form: FormGroup) {
