@@ -15,5 +15,15 @@ export class AddVehiclePageComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.form = this.formService.createForm();
+		this.form.valueChanges.subscribe({
+			next: value => {
+				console.log('value', value);
+				console.log('form', this.form);
+			},
+		});
+	}
+
+	submitForm() {
+		console.log('Form', this.formService.value);
 	}
 }

@@ -4,5 +4,10 @@
 		(click)="cancel()">
 		Cancelar
 	</button>
-	<button class="btn btn-secondary">Añadir Vehículo</button>
+	<button
+		class="btn btn-secondary"
+		[disabled]="(formService.formStatus$ | async) !== 'VALID'"
+		(click)="submit()">
+		Añadir Vehículo
+	</button>
 </div>

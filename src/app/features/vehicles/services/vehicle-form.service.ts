@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Injectable, NgZone } from '@angular/core';
+import { FormBuilder, FormControlStatus, FormGroup, Validators } from '@angular/forms';
 import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
 import { IVehicleForm } from '@features/vehicles/interfaces/vehicle-form.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,7 +14,15 @@ export class VehicleFormService {
 		return this._form;
 	}
 
-	constructor(private fb: FormBuilder) {}
+	get value(): IVehicleForm {
+		return this._form.value;
+	}
+
+	get formStatus$(): Observable<FormControlStatus> {
+		return this._form.statusChanges;
+	}
+
+	constructor(private fb: FormBuilder, private ngZone: NgZone) {}
 
 	createForm(initValue: IVehicleForm = {} as IVehicleForm) {
 		const { fb } = this;
@@ -23,10 +32,17 @@ export class VehicleFormService {
 			alias: [initValue.alias || null],
 		});
 		this.setForm(form);
+		this.emitInitialValue();
 		return form;
 	}
 
 	private setForm(form: FormGroup) {
 		this._form = form;
+	}
+
+	private emitInitialValue() {
+		this.ngZone.runOutsideAngular(() => {
+			setTimeout(() => this._form.updateValueAndValidity(), 0);
+		});
 	}
 }

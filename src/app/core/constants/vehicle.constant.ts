@@ -1,4 +1,4 @@
 export enum VEHICLE_TYPE {
-	CAR,
-	MOTORBIKE,
+	CAR = 'car',
+	MOTORBIKE = 'motorbike',
 }
