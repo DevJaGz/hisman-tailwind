@@ -1,0 +1,41 @@
+<nav
+	class="navbar bg-base-100"
+	*ngIf="isOwnerDataLoaded$ | async as owner">
+	<div class="flex-1">
+		<a class="mx-2 normal-case text-2xl hisman-font font-normal">HisMan</a>
+	</div>
+	<div class="flex-none">
+		<div class="mr-4 mt-2">
+			<app-theme-switcher
+				widthClass="w-7"
+				heightClass="h-7"></app-theme-switcher>
+		</div>
+		<div class="dropdown dropdown-end">
+			<label
+				tabindex="0"
+				class="btn btn-ghost btn-circle avatar">
+				<div class="w-10 rounded-full">
+					<img
+						[src]="owner.image"
+						alt="Owner Image" />
+				</div>
+			</label>
+			<ul
+				tabindex="0"
+				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 dark:bg-neutral-700 rounded-box">
+				<li class="flex flex-col select-none pointer-events-none px-4 py-2 mb-2 max-w-xs">
+					<span
+						class="text-sm font-medium text-gray-900 dark:text-white m-0 p-0 max-w-full whitespace-nowrap text-ellipsis overflow-hidden"
+						><span class="flex w-2.5 h-2.5 bg-teal-500 rounded-full m-0 p-0 flex-shrink-0"></span>
+						{{ owner.name }}
+					</span>
+					<p class="font-thin p-0 pl-6 max-w-full whitespace-nowrap text-ellipsis overflow-hidden">
+						{{ owner.email }}
+					</p>
+				</li>
+				<li (click)="logOut()"><a>Salir</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<app-nav-skeleton *ngIf="(isOwnerDataLoaded$ | async) === null"></app-nav-skeleton>

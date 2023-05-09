@@ -20,6 +20,7 @@ export interface IUserOwner {
 	uid?: string;
 	name: string;
 	image: string;
+	email: string;
 	account: IAccount;
 }
 

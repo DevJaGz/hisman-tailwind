@@ -12,6 +12,7 @@ export class UserAdapter {
 			uid: user.uid,
 			image: user.photoURL,
 			name: user.displayName,
+			email: user.email,
 			account: {
 				email: user.email,
 				emailVerified: user.emailVerified,

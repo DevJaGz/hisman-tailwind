@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-	selector: 'app-core-page',
-	templateUrl: './core-page.component.html',
+	selector: 'app-nav-skeleton',
+	templateUrl: './nav-skeleton.component.html',
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CorePageComponent {}
+export class NavSkeletonComponent {}
