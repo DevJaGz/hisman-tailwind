@@ -32,4 +32,8 @@ export class NavComponent {
 			error: () => this.blockUI.stop(), // Start blocking
 		});
 	}
+
+	navigateToDashboard() {
+		this.router.navigate([CORE_ROUTE_NAMES.DASHBOARD]);
+	}
 }

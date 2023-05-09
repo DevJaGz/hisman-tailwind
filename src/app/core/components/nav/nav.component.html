@@ -2,7 +2,11 @@
 	class="navbar bg-base-100"
 	*ngIf="isOwnerDataLoaded$ | async as owner">
 	<div class="flex-1">
-		<a class="mx-2 normal-case text-2xl hisman-font font-normal">HisMan</a>
+		<a
+			class="mx-2 normal-case text-2xl hisman-font font-normal cursor-pointer"
+			(click)="navigateToDashboard()"
+			>HisMan</a
+		>
 	</div>
 	<div class="flex-none">
 		<div class="mr-4 mt-2">
