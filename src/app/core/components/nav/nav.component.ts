@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { AuthenticationBridgeService } from '@core/services/authentication/authentication-bridge.service';
@@ -19,7 +20,8 @@ export class NavComponent {
 	constructor(
 		private bridge: AuthenticationBridgeService,
 		private router: Router,
-		private appStateService: AppStateService
+		private appStateService: AppStateService,
+		@Inject(DOCUMENT) private document: Document
 	) {}
 
 	logOut() {
@@ -35,6 +37,8 @@ export class NavComponent {
 
 	addVehicle() {
 		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
+		const menuItemElement = this.document.activeElement as HTMLElement;
+		menuItemElement?.blur();
 	}
 
 	navigateToDashboard() {
