@@ -33,6 +33,10 @@ export class NavComponent {
 		});
 	}
 
+	addVehicle() {
+		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
+	}
+
 	navigateToDashboard() {
 		this.router.navigate([CORE_ROUTE_NAMES.DASHBOARD]);
 	}
