@@ -42,7 +42,7 @@ export class AddVehiclePageComponent implements OnInit {
 			complete: () => {
 				this.blockUI.stop();
 				this.formService.reset(DEFAULT_VEHICLE_FORM_VALUE);
-				this.alertService.showSuccess('Excelente!', 'Tu vehículo ha sido añadido.', {
+				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido añadido.', {
 					displayingTime: 8000,
 				});
 			},
