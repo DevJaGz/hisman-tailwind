@@ -1,6 +1,6 @@
 <nav
 	class="navbar bg-base-100"
-	*ngIf="isOwnerDataLoaded$ | async as owner">
+	*ngIf="isOwnerDataLoaded$ | async as owner; else navSkeletonTemplate">
 	<div class="flex-1">
 		<a
 			class="mx-2 normal-case text-2xl hisman-font font-normal cursor-pointer"
@@ -44,4 +44,6 @@
 		</div>
 	</div>
 </nav>
-<app-nav-skeleton *ngIf="(isOwnerDataLoaded$ | async) === null"></app-nav-skeleton>
+<ng-template #navSkeletonTemplate>
+	<app-nav-skeleton></app-nav-skeleton>
+</ng-template>
