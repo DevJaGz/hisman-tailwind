@@ -1,7 +1,7 @@
 <div class="h-full">
 	<ng-container *ngIf="owner$ | async as owner">
 		<ng-container *ngIf="owner?.vehicles?.length; else NoVehiclesTemplate">
-			<app-dashboard-vehicle-list></app-dashboard-vehicle-list>
+			<app-dashboard-vehicle-list [vehicles]="vehicles$ | async"></app-dashboard-vehicle-list>
 		</ng-container>
 	</ng-container>
 </div>

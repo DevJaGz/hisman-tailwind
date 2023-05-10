@@ -14,7 +14,7 @@ import { filter, take } from 'rxjs';
 export class DashboardPageComponent implements OnInit {
 	@BlockUI() blockUI: NgBlockUI;
 	owner$ = this.appStateService.selectOwnerState$;
-
+	vehicles$ = this.appStateService.selectVehicles$;
 	constructor(private appStateService: AppStateService, private router: Router) {}
 
 	ngOnInit(): void {
