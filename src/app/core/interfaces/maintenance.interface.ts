@@ -9,6 +9,7 @@ export interface IMaintenance {
 	location?: string;
 	technicianId?: string;
 	technicianName?: string;
+	description?: string;
 	works: IMaintenanceWork[];
 }
 

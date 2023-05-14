@@ -20,5 +20,9 @@ export class VehicleFormComponent {
 		},
 	];
 
+	createMaintenance() {
+		this.formService.createMaintenance();
+	}
+
 	constructor(public formService: VehicleFormService) {}
 }

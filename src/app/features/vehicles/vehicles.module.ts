@@ -7,9 +7,15 @@ import { VehicleFooterButtonsComponent } from './components/vehicle-form-footer-
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 import { AddVehiclePageComponent } from './pages/add-vehicle-page/add-vehicle-page.component';
 import { VehiclesRoutingModule } from './vehicles-routing.module';
+import { MaintenanceFormComponent } from './components/maintenance-form/maintenance-form.component';
 
 @NgModule({
-	declarations: [AddVehiclePageComponent, VehicleFormComponent, VehicleFooterButtonsComponent],
+	declarations: [
+		AddVehiclePageComponent,
+		VehicleFormComponent,
+		VehicleFooterButtonsComponent,
+		MaintenanceFormComponent,
+	],
 	imports: [CommonModule, VehiclesRoutingModule, SharedModule, ReactiveFormsModule],
 })
 export class VehiclesModule {}

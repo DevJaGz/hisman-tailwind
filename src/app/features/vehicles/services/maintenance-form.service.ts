@@ -16,6 +16,10 @@ export class MaintenanceFormService extends FormModel {
 		return this._form?.get('works') as FormArray;
 	}
 
+	get workForms(): FormGroup[] {
+		return this.worksFormArray?.controls as FormGroup[];
+	}
+
 	constructor(
 		private fb: FormBuilder,
 		private maintenanceWorkFormService: MaintenanceWorkFormService,
@@ -29,9 +33,11 @@ export class MaintenanceFormService extends FormModel {
 		const form = fb.group({
 			name: [initValue.name || null, [Validators.required, Validators.maxLength(20)]],
 			price: [initValue.price || null, [Validators.required]],
+			date: [initValue.date ? new Date(initValue.date) : new Date(), [Validators.required]],
 			location: [initValue.location],
 			technicianId: [initValue.technicianId || null],
 			technicianName: [initValue.technicianName || null, [Validators.required]],
+			description: [initValue.description || null, Validators.maxLength(500)],
 			works: initValue.works?.length ? this.createMaintenanceWorkFormArray(initValue.works) : fb.array([]),
 		});
 		super.afterFormCreated(form);

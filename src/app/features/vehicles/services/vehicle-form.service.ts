@@ -22,12 +22,24 @@ export class VehicleFormService extends FormModel {
 		return this._form?.get('maintenances') as FormArray;
 	}
 
+	get maintenanceForms(): FormGroup[] {
+		return this.maintenancesFormArray?.controls as FormGroup[];
+	}
+
 	get licenseControl(): AbstractControl {
 		return this._form?.get('license');
 	}
 
 	get hasLicenseAlreadyExistError(): boolean {
 		return this.licenseControl?.hasError(VALIDATOR_ERROR.ALREADY_EXISTS);
+	}
+
+	createMaintenance() {
+		this.maintenancesFormArray.push(this.maintenanceFormService.createForm());
+	}
+
+	removeMaintenance(index: number) {
+		this.maintenancesFormArray.removeAt(index);
 	}
 
 	constructor(

@@ -1,0 +1,85 @@
+<section class="card bg-base-100 dark:bg-neutral-900 shadow-xl p-5 overflow-x-hidden">
+	<div class="flex items-center justify-between">
+		<div><span class="font-semibold">Fecha:</span> {{ date | date : 'short' }}</div>
+		<button
+			(click)="removeMaintenance()"
+			class="tooltip"
+			data-tip="Eliminar Mantenimiento">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="icon icon-tabler icon-tabler-trash"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				stroke-width="2"
+				stroke="currentColor"
+				fill="none"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+				<path
+					stroke="none"
+					d="M0 0h24v24H0z"
+					fill="none"></path>
+				<path d="M4 7l16 0"></path>
+				<path d="M10 11l0 6"></path>
+				<path d="M14 11l0 6"></path>
+				<path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+				<path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+			</svg>
+		</button>
+	</div>
+	<ng-container [formGroup]="form">
+		<div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-opacity">
+			<div class="form-control w-full max-w-full md:max-w-xs">
+				<label class="label">
+					<span class="label-text">Nombre</span>
+				</label>
+				<input
+					formControlName="name"
+					type="text"
+					placeholder="Ej. Revisión de 10.000 km"
+					class="input input-bordered w-full" />
+				<label class="label">
+					<span class="label-text-alt text-error">Ha superado el máximo de caracteres</span>
+				</label>
+			</div>
+			<div class="form-control w-full max-w-full md:max-w-xs">
+				<label class="label">
+					<span class="label-text">Lugar (Opcional)</span>
+				</label>
+				<input
+					formControlName="location"
+					type="text"
+					placeholder="Ej. CODIESEL"
+					class="input input-bordered w-full" />
+				<label class="label">
+					<span class="label-text-alt text-error">Ha superado el máximo de caracteres</span>
+				</label>
+			</div>
+			<div class="form-control w-full max-w-full md:max-w-xs">
+				<label class="label">
+					<span class="label-text">Técnico (Opcional)</span>
+				</label>
+				<input
+					formControlName="technicianName"
+					type="text"
+					placeholder="Ej. Julian Gomez"
+					class="input input-bordered w-full" />
+				<label class="label">
+					<span class="label-text-alt text-error">Ha superado el máximo de caracteres</span>
+				</label>
+			</div>
+		</div>
+		<div class="form-control w-full max-w-full">
+			<label class="label">
+				<span class="label-text">Descripción (Opcional)</span>
+			</label>
+			<textarea
+				placeholder="Ej:  Cambio de aceite y filtro de aire"
+				class="textarea textarea-bordered textarea-lg w-full"></textarea>
+			<label class="label">
+				<span class="label-text-alt text-error">Ha superado el máximo de caracteres</span>
+			</label>
+		</div>
+	</ng-container>
+</section>
