@@ -1,9 +1,9 @@
-<section class="card bg-base-100 dark:bg-neutral-900 shadow-xl p-5 overflow-x-hidden">
+<section class="card bg-base-100 dark:bg-neutral-900 shadow-md px-4 py-5 rounded-lg">
 	<div class="flex items-center justify-between">
 		<div><span class="font-semibold">Fecha:</span> {{ date | date : 'short' }}</div>
 		<button
 			(click)="removeMaintenance()"
-			class="tooltip"
+			class="tooltip tooltip-left"
 			data-tip="Eliminar Mantenimiento">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

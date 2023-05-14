@@ -33,6 +33,8 @@ module.exports = {
 					success: '#B6EB7A',
 					warning: '#FFE162',
 					error: '#D61355',
+					'base-200': '#212529',
+					'base-300': '#343a40',
 				},
 				light: {
 					primary: '#146C94',
@@ -44,6 +46,8 @@ module.exports = {
 					success: '#B6EB7A',
 					warning: '#FFE162',
 					error: '#d13030',
+					'base-200': '#adb5bd',
+					'base-300': '#6c757d',
 				},
 			},
 		],
