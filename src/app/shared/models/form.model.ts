@@ -7,10 +7,6 @@ import { Observable } from 'rxjs';
 export abstract class FormModel {
 	abstract createForm(): FormGroup;
 
-	get form(): FormGroup {
-		return this._form;
-	}
-
 	get value(): IVehicleForm {
 		return this._form.value;
 	}
@@ -36,13 +32,13 @@ export abstract class FormModel {
 	protected _form: FormGroup;
 
 	protected afterFormCreated(form: FormGroup) {
-		this.setForm(form);
+		this.registerForm(form);
 		this.emitInitialValue();
 	}
 
 	constructor(private ngZone: NgZone) {}
 
-	private setForm(form: FormGroup) {
+	private registerForm(form: FormGroup) {
 		this._form = form;
 	}
 
