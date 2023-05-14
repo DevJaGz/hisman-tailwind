@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { VehicleFormService } from '@features/vehicles/services/vehicle-form.service';
 
@@ -16,7 +16,11 @@ export class MaintenanceFormComponent {
 		return this.form?.get('date').value;
 	}
 
-	constructor(private vehicleFormService: VehicleFormService) {}
+	get elementRef(): ElementRef<HTMLElement> {
+		return this.host;
+	}
+
+	constructor(private vehicleFormService: VehicleFormService, private host: ElementRef<HTMLElement>) {}
 
 	removeMaintenance() {
 		const { vehicleFormService, index } = this;

@@ -115,7 +115,7 @@
 	<div class="flex gap-4 items-center mt-10 lg:mt-14">
 		<h4 class="font-bold text-xl">Mantenimientos</h4>
 		<button
-			(click)="createMaintenance()"
+			(click)="pushMaintenanceAndScroll()"
 			class="tooltip"
 			data-tip="Añadir Mantenimiento">
 			<svg
@@ -148,8 +148,8 @@
 			</ng-container>
 			<div class="flex justify-center">
 				<button
-					(click)="createMaintenance()"
-					class="flex items-center gap-2 flex-nowrap">
+					(click)="pushMaintenance()"
+					class="flex items-center gap-2 flex-nowrap select-none">
 					Añadir Mantenimiento
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

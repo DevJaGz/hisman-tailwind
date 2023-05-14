@@ -34,7 +34,7 @@ export class VehicleFormService extends FormModel {
 		return this.licenseControl?.hasError(VALIDATOR_ERROR.ALREADY_EXISTS);
 	}
 
-	createMaintenance() {
+	pushMaintenance() {
 		this.maintenancesFormArray.push(this.maintenanceFormService.createForm());
 	}
 
