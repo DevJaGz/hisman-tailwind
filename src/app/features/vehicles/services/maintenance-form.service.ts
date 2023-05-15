@@ -32,11 +32,11 @@ export class MaintenanceFormService extends FormModel {
 		const { fb } = this;
 		const form = fb.group({
 			name: [initValue.name || null, [Validators.required, Validators.maxLength(20)]],
-			price: [initValue.price || null, [Validators.required]],
-			date: [initValue.date ? new Date(initValue.date) : new Date(), [Validators.required]],
-			location: [initValue.location],
+			price: [initValue.price || 0, [Validators.required, Validators.min(0)]],
+			date: [initValue.date ? new Date(initValue.date) : new Date()],
+			location: [initValue.location, Validators.maxLength(100)],
 			technicianId: [initValue.technicianId || null],
-			technicianName: [initValue.technicianName || null, [Validators.required]],
+			technicianName: [initValue.technicianName || null],
 			description: [initValue.description || null, Validators.maxLength(500)],
 			works: initValue.works?.length ? this.createMaintenanceWorkFormArray(initValue.works) : fb.array([]),
 		});
