@@ -1,4 +1,4 @@
-<div class="h-full m-auto max-w-5xl px-4 lg:px-0">
+<div class="h-full m-auto max-w-5xl px-4 xl:px-0">
 	<ng-container *ngIf="owner$ | async as owner">
 		<ng-container *ngIf="owner?.vehicles?.length; else NoVehiclesTemplate">
 			<app-dashboard-vehicle-list [vehicles]="vehicles$ | async"></app-dashboard-vehicle-list>
