@@ -1,11 +1,38 @@
 <section class="custom-card flex flex-col h-fit">
-	<header class="flex flex-col mb-2">
-		<h4 class="font-bold max-w-full block whitespace-nowrap overflow-hidden text-ellipsis">
-			{{ vehicle?.license }}&nbsp;
-		</h4>
-		<small class="max-w-full block whitespace-nowrap overflow-hidden text-ellipsis"
-			>{{ vehicle?.alias }}&nbsp;</small
-		>
+	<header class="flex mb-2 items-start justify-between">
+		<div class="flex flex-col">
+			<h4 class="font-bold max-w-full block whitespace-nowrap overflow-hidden text-ellipsis">
+				{{ vehicle?.license }}&nbsp;
+			</h4>
+			<small class="max-w-full block whitespace-nowrap overflow-hidden text-ellipsis"
+				>{{ vehicle?.alias }}&nbsp;</small
+			>
+		</div>
+		<button
+			class="tooltip tooltip-left"
+			data-tip="Eliminar Vehículo">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="icon icon-tabler icon-tabler-trash"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				stroke-width="2"
+				stroke="currentColor"
+				fill="none"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+				<path
+					stroke="none"
+					d="M0 0h24v24H0z"
+					fill="none"></path>
+				<path d="M4 7l16 0"></path>
+				<path d="M10 11l0 6"></path>
+				<path d="M14 11l0 6"></path>
+				<path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+				<path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+			</svg>
+		</button>
 	</header>
 	<footer class="grid grid-cols-1 lg:grid-cols-2 place-items-center place-content-end h-full gap-2">
 		<button
