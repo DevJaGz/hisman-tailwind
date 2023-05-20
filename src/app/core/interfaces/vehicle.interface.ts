@@ -8,4 +8,5 @@ export interface IVehicle {
 	image?: string;
 	type: VEHICLE_TYPE;
 	documents: IDocument[];
+	alias?: string;
 }

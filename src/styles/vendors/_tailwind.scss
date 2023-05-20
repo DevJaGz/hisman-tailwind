@@ -18,4 +18,8 @@
 	.text-dark {
 		@apply text-neutral-200;
 	}
+
+	.custom-card {
+		@apply card bg-base-100 dark:bg-neutral-900 shadow-md px-4 py-5 rounded-lg;
+	}
 }
