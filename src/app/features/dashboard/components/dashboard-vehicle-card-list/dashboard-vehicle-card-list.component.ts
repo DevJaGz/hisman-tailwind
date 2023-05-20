@@ -18,4 +18,8 @@ export class DashboardVehicleCardListComponent {
 	addNewVehicle() {
 		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES, VEHICLES_ROUTE_NAMES.ADD]);
 	}
+
+	trackByFn(index: number, vehicle: IVehicle) {
+		return vehicle.license;
+	}
 }
