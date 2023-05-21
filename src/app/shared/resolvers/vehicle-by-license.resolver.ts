@@ -32,4 +32,3 @@ export const vehicleByLicenseResolver = (route: ActivatedRouteSnapshot): Observa
 		})
 	);
 };
-//
