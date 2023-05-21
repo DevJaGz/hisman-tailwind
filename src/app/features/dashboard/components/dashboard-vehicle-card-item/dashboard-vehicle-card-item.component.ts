@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
@@ -11,14 +11,23 @@ import { removeRouteParams } from '@shared/utils/routes.util';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardVehicleCardItemComponent {
+export class DashboardVehicleCardItemComponent implements OnInit {
 	@Input() vehicle: IVehicle;
-	constructor(private router: Router) {}
+
+	constructor(private router: Router, private cd: ChangeDetectorRef) {}
+	ngOnInit(): void {
+		console.log(this.vehicle);
+	}
+
 	editVehicle() {
 		this.router.navigate([
 			CORE_ROUTE_NAMES.VEHICLES,
 			removeRouteParams(VEHICLES_ROUTE_NAMES.EDIT),
 			this.vehicle?.license,
 		]);
+	}
+
+	removeVehicle() {
+		console.log(this.vehicle);
 	}
 }

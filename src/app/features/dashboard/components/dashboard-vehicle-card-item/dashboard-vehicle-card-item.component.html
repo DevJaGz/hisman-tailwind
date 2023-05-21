@@ -8,8 +8,9 @@
 				>{{ vehicle?.alias }}&nbsp;</small
 			>
 		</div>
-		<button
-			class="tooltip tooltip-left"
+		<label
+			[for]="vehicle?.license"
+			class="cursor-pointer tooltip tooltip-left"
 			data-tip="Eliminar Vehículo">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,35 @@
 				<path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
 				<path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
 			</svg>
-		</button>
+		</label>
+
+		<!-- REMOVE VEHICLE MODAL ******* -->
+		<input
+			type="checkbox"
+			[id]="vehicle?.license"
+			class="modal-toggle" />
+		<div class="modal">
+			<div class="modal-box">
+				<h3 class="font-bold text-lg">Eliminar Vehículo</h3>
+				<p class="py-4">
+					¿Seguro que quiere eliminar el vehículo de placas <strong>{{ vehicle?.license }}</strong> ?
+				</p>
+				<div class="modal-action gap-4">
+					<label
+						[for]="vehicle?.license"
+						class="btn btn-outline"
+						>CANCELAR</label
+					>
+					<label
+						(click)="removeVehicle()"
+						[for]="vehicle?.license"
+						class="btn"
+						>SI, ELIMINAR</label
+					>
+				</div>
+			</div>
+		</div>
+		<!-- ******* -->
 	</header>
 	<footer class="grid grid-cols-2 place-items-center place-content-end h-full gap-2">
 		<button
