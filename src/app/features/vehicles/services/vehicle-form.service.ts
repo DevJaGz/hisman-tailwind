@@ -68,9 +68,6 @@ export class VehicleFormService extends FormModel {
 			type: [initValue.type || VEHICLE_TYPE.CAR, Validators.required],
 			alias: [initValue.alias || null, [Validators.maxLength(20)]],
 			documents: [initValue.documents || []],
-			maintenances: initValue.maintenances?.length
-				? this.createMaintenanceFormArray(initValue.maintenances)
-				: fb.array([]),
 		});
 		if (!isEditBehavior) {
 			form.get('license').setAsyncValidators(alreadyExistsAsyncValidator(this.vehicleLinceseList$));

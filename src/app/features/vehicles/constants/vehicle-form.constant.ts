@@ -6,5 +6,4 @@ export const DEFAULT_VEHICLE_FORM_VALUE: IVehicleForm = {
 	documents: [],
 	license: null,
 	type: VEHICLE_TYPE.CAR,
-	maintenances: [],
 };
