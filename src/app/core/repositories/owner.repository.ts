@@ -7,4 +7,5 @@ export abstract class OwnerRepository {
 	abstract addVehicle(vehicle: IVehicle): Observable<IVehicle>;
 	abstract editVehicle$(vehicle: IVehicle): Observable<IVehicle>;
 	abstract getVehicles$(): Observable<IVehicle[]>;
+	abstract removeVehicle$(vehicle: IVehicle): Observable<IVehicle>;
 }

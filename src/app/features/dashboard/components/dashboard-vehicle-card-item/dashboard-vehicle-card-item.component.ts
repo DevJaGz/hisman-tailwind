@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
+import { AlertService } from '@core/services/alert.service';
 import { VEHICLES_ROUTE_NAMES } from '@features/vehicles/vehicles-routing.module';
 import { removeRouteParams } from '@shared/utils/routes.util';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { OwnerBridgeService } from '../../../../core/services/owner/owner-bridge.service';
 
 @Component({
 	selector: 'app-dashboard-vehicle-card-item',
@@ -11,13 +14,15 @@ import { removeRouteParams } from '@shared/utils/routes.util';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardVehicleCardItemComponent implements OnInit {
+export class DashboardVehicleCardItemComponent {
+	@BlockUI() blockUI: NgBlockUI;
 	@Input() vehicle: IVehicle;
 
-	constructor(private router: Router, private cd: ChangeDetectorRef) {}
-	ngOnInit(): void {
-		console.log(this.vehicle);
-	}
+	constructor(
+		private router: Router,
+		private ownerBridgeService: OwnerBridgeService,
+		private alertService: AlertService
+	) {}
 
 	editVehicle() {
 		this.router.navigate([
@@ -28,6 +33,14 @@ export class DashboardVehicleCardItemComponent implements OnInit {
 	}
 
 	removeVehicle() {
-		console.log(this.vehicle);
+		this.blockUI.start('Eliminando Vehículo...');
+		this.ownerBridgeService.removeVehicle$(this.vehicle).subscribe({
+			complete: () => {
+				this.blockUI.stop();
+				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido eliminada.', {
+					displayingTime: 8000,
+				});
+			},
+		});
 	}
 }

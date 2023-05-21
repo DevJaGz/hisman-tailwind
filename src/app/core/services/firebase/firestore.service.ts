@@ -9,6 +9,7 @@ import {
 	addDoc,
 	collection,
 	collectionData,
+	deleteDoc,
 	doc,
 	getDoc,
 	getDocs,
@@ -94,5 +95,9 @@ export class FirestoreService {
 
 	setDocument<T = DocumentData>(docRef: DocumentReference<T>, documentData: T): Observable<T> {
 		return from(setDoc(docRef, documentData, { merge: true })).pipe(map(() => documentData));
+	}
+
+	removeDocument<T = DocumentData>(docRef: DocumentReference<T>): Observable<true> {
+		return from(deleteDoc(docRef)).pipe(map(() => true));
 	}
 }
