@@ -29,6 +29,10 @@ export class VehicleCardItemComponent {
 		private alertService: AlertService
 	) {}
 
+	seeMaintenances() {
+		this.router.navigate([CORE_ROUTE_NAMES.MAINTENANCES, this.vehicle?.license]);
+	}
+
 	editVehicle() {
 		this.blockUI.start('Cargando...');
 		this.router.navigate([
