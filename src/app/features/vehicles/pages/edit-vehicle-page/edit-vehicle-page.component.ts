@@ -43,7 +43,7 @@ export class EditVehiclePageComponent implements OnInit {
 				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido editado.', {
 					displayingTime: 8000,
 				});
-				this.router.navigate([CORE_ROUTE_NAMES.DASHBOARD]);
+				this.router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
 			},
 		});
 	}

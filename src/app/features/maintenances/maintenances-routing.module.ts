@@ -15,7 +15,7 @@ export enum MAINTENANCE_ROUTE_NAMES {
 const ROUTES: Routes = [
 	{
 		path: MAINTENANCE_ROUTE_NAMES.BLANK,
-		redirectTo: `/${CORE_ROUTE_NAMES.DASHBOARD}`,
+		redirectTo: `/${CORE_ROUTE_NAMES.VEHICLES}`,
 		pathMatch: 'full',
 	},
 	{

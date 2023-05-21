@@ -23,7 +23,7 @@ export class VehicleFooterButtonsComponent implements OnInit {
 	constructor(private router: Router, public formService: VehicleFormService) {}
 
 	cancel() {
-		this.router.navigate([CORE_ROUTE_NAMES.DASHBOARD]);
+		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
 	}
 
 	submit() {

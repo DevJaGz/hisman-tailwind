@@ -4,18 +4,18 @@ import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { AlertService } from '@core/services/alert.service';
+import { OwnerBridgeService } from '@core/services/owner/owner-bridge.service';
 import { VEHICLES_ROUTE_NAMES } from '@features/vehicles/vehicles-routing.module';
 import { removeRouteParams } from '@shared/utils/routes.util';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { OwnerBridgeService } from '../../../../core/services/owner/owner-bridge.service';
 
 @Component({
-	selector: 'app-dashboard-vehicle-card-item',
-	templateUrl: './dashboard-vehicle-card-item.component.html',
+	selector: 'app-vehicle-card-item',
+	templateUrl: './vehicle-card-item.component.html',
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardVehicleCardItemComponent {
+export class VehicleCardItemComponent {
 	@BlockUI() blockUI: NgBlockUI;
 	@Input() vehicle: IVehicle;
 

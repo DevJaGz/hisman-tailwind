@@ -23,7 +23,7 @@ export const vehicleByLicenseResolver = (route: ActivatedRouteSnapshot): Observa
 			return appStateService.selectVehicle$(license).pipe(
 				map(vehicle => {
 					if (!vehicle) {
-						router.navigate([CORE_ROUTE_NAMES.DASHBOARD]);
+						router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
 						return null;
 					}
 					return vehicle;

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { AuthenticationBridgeService } from '@core/services/authentication/authentication-bridge.service';
 import { AppStateService } from '@core/store/app-state.service';
+import { VEHICLES_ROUTE_NAMES } from '@features/vehicles/vehicles-routing.module';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
@@ -36,12 +37,12 @@ export class NavComponent {
 	}
 
 	addVehicle() {
-		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
+		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES, VEHICLES_ROUTE_NAMES.ADD]);
 		const menuItemElement = this.document.activeElement as HTMLElement;
 		menuItemElement?.blur();
 	}
 
 	navigateToDashboard() {
-		this.router.navigate([CORE_ROUTE_NAMES.DASHBOARD]);
+		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
 	}
 }
