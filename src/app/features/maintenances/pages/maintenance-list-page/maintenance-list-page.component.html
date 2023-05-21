@@ -1,0 +1,80 @@
+<div class="h-full m-auto max-w-5xl px-4 xl:px-0 pt-14">
+	<div class="flex flex-col gap-2 mb-10">
+		<h3 class="font-bold text-2xl flex gap-2">
+			PLACA
+			<div class="flex items-center gap-1">
+				<span class="text-success"> &#x2022;</span>
+				<ng-container *ngIf="true; else MotorBikeIconemplate">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="icon icon-tabler icon-tabler-car"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						stroke-width="2"
+						stroke="currentColor"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round">
+						<path
+							stroke="none"
+							d="M0 0h24v24H0z"
+							fill="none"></path>
+						<path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+						<path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+						<path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+					</svg>
+				</ng-container>
+				<ng-template #MotorBikeIconemplate>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="icon icon-tabler icon-tabler-motorbike"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						stroke-width="2"
+						stroke="currentColor"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round">
+						<path
+							stroke="none"
+							d="M0 0h24v24H0z"
+							fill="none"></path>
+						<path d="M5 16m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+						<path d="M19 16m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+						<path d="M7.5 14h5l4 -4h-10.5m1.5 4l4 -4"></path>
+						<path d="M13 6h2l1.5 3l2 4"></path>
+					</svg>
+				</ng-template>
+			</div>
+		</h3>
+		<p>Turbo</p>
+	</div>
+	<header class="flex items-center gap-2 mb-8">
+		<h4 class="font-bold text-xl">Mantenimientos</h4>
+		<button
+			class="tooltip"
+			data-tip="Añadir Mantenimiento">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="icon icon-tabler icon-tabler-square-plus"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				stroke-width="2"
+				stroke="currentColor"
+				fill="none"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+				<path
+					stroke="none"
+					d="M0 0h24v24H0z"
+					fill="none"></path>
+				<path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+				<path d="M9 12l6 0"></path>
+				<path d="M12 9l0 6"></path>
+			</svg>
+		</button>
+	</header>
+</div>
