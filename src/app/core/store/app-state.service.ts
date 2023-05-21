@@ -23,6 +23,10 @@ export class AppStateService {
 		);
 	}
 
+	selectVehicle$(license: string): Observable<IVehicle> {
+		return this.selectVehicles$.pipe(map(vehicles => vehicles.find(vehicle => vehicle.license === license)));
+	}
+
 	setOwnerState(partialOwner: Partial<IOwner>) {
 		this.setPartialAppState<IOwner>('owner', partialOwner);
 	}
