@@ -25,6 +25,7 @@ export class DashboardVehicleCardItemComponent {
 	) {}
 
 	editVehicle() {
+		this.blockUI.start('Cargando...');
 		this.router.navigate([
 			CORE_ROUTE_NAMES.VEHICLES,
 			removeRouteParams(VEHICLES_ROUTE_NAMES.EDIT),
