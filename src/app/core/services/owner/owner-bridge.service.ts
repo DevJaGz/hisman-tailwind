@@ -21,4 +21,8 @@ export class OwnerBridgeService {
 	getVehicles$(): Observable<IVehicle[]> {
 		return this.repository.getVehicles$();
 	}
+
+	editVehicle$(vehicle: IVehicle): Observable<IVehicle> {
+		return this.repository.editVehicle$(vehicle);
+	}
 }

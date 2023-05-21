@@ -7,6 +7,7 @@
 	<button
 		*ngIf="isEditBehavior; else addVehicleButtonTemplate"
 		class="btn btn-secondary"
+		(click)="submit()"
 		[disabled]="(formService.formStatus$ | async) !== 'VALID' || !formService.isDirty">
 		Editar Vehículo
 	</button>

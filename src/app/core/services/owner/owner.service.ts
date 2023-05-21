@@ -21,6 +21,26 @@ export class OwnerService implements OwnerRepository {
 		private appStateService: AppStateService
 	) {}
 
+	editVehicle$(vehicle: IVehicle): Observable<IVehicle> {
+		return this.getOwnerDocument$().pipe(
+			map(doc => {
+				if (doc) {
+					const owner = doc.data() as IOwner;
+					const docRef = doc.ref as DocumentReference<IOwner>;
+					const newOwner = {
+						...owner,
+						vehicles: owner.vehicles.map(v => (v.license === vehicle.license ? vehicle : v)),
+					};
+					this.appStateService.setOwnerState(newOwner);
+					this.firestoreService.setDocument<IOwner>(docRef, newOwner);
+					return vehicle;
+				}
+				return null;
+			}),
+			take(1)
+		);
+	}
+
 	getVehicles$(): Observable<IVehicle[]> {
 		return this.getOwnerDocument$().pipe(
 			map(doc => {

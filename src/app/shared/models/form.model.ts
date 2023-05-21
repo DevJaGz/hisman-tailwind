@@ -11,6 +11,10 @@ export abstract class FormModel {
 		return this._form.value;
 	}
 
+	get rawValue(): IVehicleForm {
+		return this._form.getRawValue();
+	}
+
 	get formStatus$(): Observable<FormControlStatus> {
 		return this._form.statusChanges;
 	}
