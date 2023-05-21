@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-license.resolver';
 
 @Component({
@@ -9,9 +10,11 @@ import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-li
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaintenanceListPageComponent implements OnInit {
+	vehicle: IVehicle;
+
 	constructor(private route: ActivatedRoute) {}
+
 	ngOnInit(): void {
-		const vehicle = this.route.snapshot.data[VEHICLE_BY_LICENSE_RESOLVER_KEY];
-		console.log('vehicle', vehicle);
+		this.vehicle = this.route.snapshot.data[VEHICLE_BY_LICENSE_RESOLVER_KEY];
 	}
 }
