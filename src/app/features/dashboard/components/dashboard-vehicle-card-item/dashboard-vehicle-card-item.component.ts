@@ -38,7 +38,7 @@ export class DashboardVehicleCardItemComponent {
 		this.ownerBridgeService.removeVehicle$(this.vehicle).subscribe({
 			complete: () => {
 				this.blockUI.stop();
-				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido eliminada.', {
+				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido eliminado.', {
 					displayingTime: 8000,
 				});
 			},
