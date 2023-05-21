@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { AlertService } from '@core/services/alert.service';
@@ -17,6 +18,10 @@ import { OwnerBridgeService } from '../../../../core/services/owner/owner-bridge
 export class DashboardVehicleCardItemComponent {
 	@BlockUI() blockUI: NgBlockUI;
 	@Input() vehicle: IVehicle;
+
+	get isCar() {
+		return this.vehicle?.type === VEHICLE_TYPE.CAR;
+	}
 
 	constructor(
 		private router: Router,
