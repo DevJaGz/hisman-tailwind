@@ -55,13 +55,15 @@ export class VehicleFormService extends FormModel {
 		map(vehicleList => vehicleList?.map(vehicle => vehicle.license))
 	);
 
-	override createForm(initValue: IVehicleForm = {} as IVehicleForm): FormGroup {
+	override createForm(initValue: IVehicleForm = {} as IVehicleForm, isEditBehavior = false): FormGroup {
 		const { fb } = this;
 		const form = fb.group({
 			license: [
-				initValue.license || null,
+				{
+					value: initValue.license || null,
+					disabled: isEditBehavior,
+				},
 				[Validators.required, Validators.maxLength(10)],
-				[alreadyExistsAsyncValidator(this.vehicleLinceseList$)],
 			],
 			type: [initValue.type || VEHICLE_TYPE.CAR, Validators.required],
 			alias: [initValue.alias || null, [Validators.maxLength(20)]],
@@ -70,6 +72,9 @@ export class VehicleFormService extends FormModel {
 				? this.createMaintenanceFormArray(initValue.maintenances)
 				: fb.array([]),
 		});
+		if (!isEditBehavior) {
+			form.get('license').setAsyncValidators(alreadyExistsAsyncValidator(this.vehicleLinceseList$));
+		}
 		super.afterFormCreated(form);
 		return form;
 	}

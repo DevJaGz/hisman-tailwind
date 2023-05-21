@@ -14,10 +14,12 @@ import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-li
 export class EditVehiclePageComponent implements OnInit {
 	form: FormGroup;
 	vehicle: IVehicle;
+	isEditBehavior = true;
 
 	constructor(public formService: VehicleFormService, private route: ActivatedRoute) {}
+
 	ngOnInit(): void {
 		const vehicle = this.route.snapshot.data[VEHICLE_BY_LICENSE_RESOLVER_KEY];
-		this.form = this.formService.createForm(vehicle);
+		this.form = this.formService.createForm(vehicle, this.isEditBehavior);
 	}
 }

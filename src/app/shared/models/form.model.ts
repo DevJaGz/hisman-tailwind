@@ -15,6 +15,10 @@ export abstract class FormModel {
 		return this._form.statusChanges;
 	}
 
+	get isDirty(): boolean {
+		return this._form.dirty;
+	}
+
 	hasControlRequiredError(controlName: string): boolean {
 		const control = this._form?.get(controlName);
 		return control?.hasError(VALIDATOR_ERROR.REQUIRED) && control.dirty;

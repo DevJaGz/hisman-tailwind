@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, QueryList, ViewChildren } from '@angular/core';
 import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
 import { MaintenanceFormComponent } from '@features/vehicles/components/maintenance-form/maintenance-form.component';
 import { VehicleFormService } from '@features/vehicles/services/vehicle-form.service';
@@ -11,6 +11,7 @@ import { VehicleFormService } from '@features/vehicles/services/vehicle-form.ser
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleFormComponent {
+	@Input() isEditBehavior = false;
 	@ViewChildren(MaintenanceFormComponent)
 	maintenanceComponents: QueryList<MaintenanceFormComponent>;
 	vehicleTypeList = [
