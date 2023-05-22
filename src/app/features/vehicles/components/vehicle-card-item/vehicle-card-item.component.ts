@@ -35,11 +35,8 @@ export class VehicleCardItemComponent {
 
 	editVehicle() {
 		this.blockUI.start('Cargando...');
-		this.router.navigate([
-			CORE_ROUTE_NAMES.VEHICLES,
-			removeRouteParams(VEHICLES_ROUTE_NAMES.EDIT),
-			this.vehicle?.license,
-		]);
+		const URL = [CORE_ROUTE_NAMES.VEHICLES, this.vehicle?.license, removeRouteParams(VEHICLES_ROUTE_NAMES.EDIT)];
+		this.router.navigate(URL);
 	}
 
 	removeVehicle() {

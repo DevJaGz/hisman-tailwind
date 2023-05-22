@@ -12,7 +12,7 @@ import {
 export enum VEHICLES_ROUTE_NAMES {
 	BLANK = '',
 	ADD = 'new',
-	EDIT = 'edit/:license',
+	EDIT = ':license/edit',
 }
 
 const routes: ROUTES = [
