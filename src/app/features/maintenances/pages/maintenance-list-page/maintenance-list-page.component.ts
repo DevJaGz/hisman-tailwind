@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
+import { MAINTENANCE_ROUTE_NAMES } from '@features/maintenances/maintenances-routing.module';
 import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-license.resolver';
 
 @Component({
@@ -12,7 +13,12 @@ import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-li
 export class MaintenanceListPageComponent implements OnInit {
 	vehicle: IVehicle;
 
-	constructor(private route: ActivatedRoute) {}
+	addMaintenance() {
+		const URL = [MAINTENANCE_ROUTE_NAMES.ADD];
+		this.router.navigate(URL, { relativeTo: this.route });
+	}
+
+	constructor(private route: ActivatedRoute, private router: Router) {}
 
 	ngOnInit(): void {
 		this.vehicle = this.route.snapshot.data[VEHICLE_BY_LICENSE_RESOLVER_KEY];
