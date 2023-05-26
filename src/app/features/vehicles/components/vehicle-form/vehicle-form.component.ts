@@ -1,7 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
-import { MaintenanceFormComponent } from '@features/vehicles/components/maintenance-form/maintenance-form.component';
 import { VehicleFormService } from '@features/vehicles/services/vehicle-form.service';
 
 @Component({
@@ -12,8 +10,6 @@ import { VehicleFormService } from '@features/vehicles/services/vehicle-form.ser
 })
 export class VehicleFormComponent {
 	@Input() isEditBehavior = false;
-	@ViewChildren(MaintenanceFormComponent)
-	maintenanceComponents: QueryList<MaintenanceFormComponent>;
 	vehicleTypeList = [
 		{
 			value: VEHICLE_TYPE.CAR,
@@ -25,26 +21,5 @@ export class VehicleFormComponent {
 		},
 	];
 
-	pushMaintenance() {
-		this.formService.pushMaintenance();
-	}
-
-	pushMaintenanceAndScroll() {
-		this.formService.pushMaintenance();
-		this.scrollToLastMaintenance();
-	}
-
-	constructor(public formService: VehicleFormService, @Inject(DOCUMENT) private document: Document) {}
-
-	private scrollToLastMaintenance() {
-		setTimeout(() => {
-			const lastMaintenanceComponent = this.maintenanceComponents.last;
-			const element = lastMaintenanceComponent?.elementRef?.nativeElement;
-			this.document.defaultView.scroll({
-				top: element.offsetTop,
-				left: 0,
-				behavior: 'smooth',
-			});
-		}, 0);
-	}
+	constructor(public formService: VehicleFormService) {}
 }

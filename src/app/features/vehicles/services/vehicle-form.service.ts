@@ -1,10 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
-import { IMaintenance } from '@core/interfaces/maintenance.interface';
 import { AppStateService } from '@core/store/app-state.service';
 import { IVehicleForm } from '@features/vehicles/interfaces/vehicle-form.interface';
-import { MaintenanceFormService } from '@features/vehicles/services/maintenance-form.service';
 import { VALIDATOR_ERROR } from '@shared/constants/validator-errors.constant';
 import { FormModel } from '@shared/models/form.model';
 import { alreadyExistsAsyncValidator } from '@shared/validators/already-exists-async.validator';
@@ -18,14 +16,6 @@ export class VehicleFormService extends FormModel {
 		return this._form;
 	}
 
-	get maintenancesFormArray(): FormArray {
-		return this._form?.get('maintenances') as FormArray;
-	}
-
-	get maintenanceForms(): FormGroup[] {
-		return this.maintenancesFormArray?.controls as FormGroup[];
-	}
-
 	get licenseControl(): AbstractControl {
 		return this._form?.get('license');
 	}
@@ -34,20 +24,7 @@ export class VehicleFormService extends FormModel {
 		return this.licenseControl?.hasError(VALIDATOR_ERROR.ALREADY_EXISTS);
 	}
 
-	pushMaintenance() {
-		this.maintenancesFormArray.push(this.maintenanceFormService.createForm());
-	}
-
-	removeMaintenance(index: number) {
-		this.maintenancesFormArray.removeAt(index);
-	}
-
-	constructor(
-		private fb: FormBuilder,
-		private appStateService: AppStateService,
-		private maintenanceFormService: MaintenanceFormService,
-		ngZone: NgZone
-	) {
+	constructor(private fb: FormBuilder, private appStateService: AppStateService, ngZone: NgZone) {
 		super(ngZone);
 	}
 
@@ -74,10 +51,5 @@ export class VehicleFormService extends FormModel {
 		}
 		super.afterFormCreated(form);
 		return form;
-	}
-
-	private createMaintenanceFormArray(maintenances: IMaintenance[]) {
-		const { fb, maintenanceFormService } = this;
-		return fb.array(maintenances.map(maintenance => fb.group(maintenanceFormService.createForm(maintenance))));
 	}
 }

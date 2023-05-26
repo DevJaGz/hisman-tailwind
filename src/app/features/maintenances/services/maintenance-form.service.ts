@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IMaintenance, IMaintenanceWork } from '@core/interfaces/maintenance.interface';
-import { MaintenanceWorkFormService } from '@features/vehicles/services/maintenance-work-form.service';
+import { IMaintenance } from '@core/interfaces/maintenance.interface';
 import { FormModel } from '@shared/models/form.model';
 
 @Injectable({
@@ -20,11 +19,7 @@ export class MaintenanceFormService extends FormModel {
 		return this.worksFormArray?.controls as FormGroup[];
 	}
 
-	constructor(
-		private fb: FormBuilder,
-		private maintenanceWorkFormService: MaintenanceWorkFormService,
-		ngZone: NgZone
-	) {
+	constructor(private fb: FormBuilder, ngZone: NgZone) {
 		super(ngZone);
 	}
 
@@ -38,16 +33,8 @@ export class MaintenanceFormService extends FormModel {
 			technicianId: [initValue.technicianId || null],
 			technicianName: [initValue.technicianName || null],
 			description: [initValue.description || null, Validators.maxLength(500)],
-			works: initValue.works?.length ? this.createMaintenanceWorkFormArray(initValue.works) : fb.array([]),
 		});
 		super.afterFormCreated(form);
 		return form;
-	}
-
-	private createMaintenanceWorkFormArray(maintenanceWorks: IMaintenanceWork[]) {
-		const { fb, maintenanceWorkFormService } = this;
-		return fb.array(
-			maintenanceWorks.map(maintenanceWork => fb.group(maintenanceWorkFormService.createForm(maintenanceWork)))
-		);
 	}
 }

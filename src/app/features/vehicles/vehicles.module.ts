@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
-import { MaintenanceFormComponent } from './components/maintenance-form/maintenance-form.component';
 import { VehicleCardItemComponent } from './components/vehicle-card-item/vehicle-card-item.component';
 import { VehicleCardListComponent } from './components/vehicle-card-list/vehicle-card-list.component';
 import { VehicleFooterButtonsComponent } from './components/vehicle-form-footer-buttons/vehicle-form-footer-buttons.component';
@@ -18,7 +17,6 @@ import { VehiclesRoutingModule } from './vehicles-routing.module';
 		AddVehiclePageComponent,
 		VehicleFormComponent,
 		VehicleFooterButtonsComponent,
-		MaintenanceFormComponent,
 		EditVehiclePageComponent,
 		VehicleCardListComponent,
 		VehicleCardItemComponent,
