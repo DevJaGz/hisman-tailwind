@@ -30,7 +30,12 @@ export class VehicleCardItemComponent {
 	) {}
 
 	seeMaintenances() {
-		this.router.navigate([CORE_ROUTE_NAMES.MAINTENANCES, this.vehicle?.license]);
+		const URL = [
+			CORE_ROUTE_NAMES.VEHICLES,
+			this.vehicle?.license,
+			removeRouteParams(VEHICLES_ROUTE_NAMES.MAINTENANCES),
+		];
+		this.router.navigate(URL);
 	}
 
 	editVehicle() {

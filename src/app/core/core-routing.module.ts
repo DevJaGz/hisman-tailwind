@@ -8,7 +8,6 @@ export enum CORE_ROUTE_NAMES {
 	AUTHENTICATION = 'auth',
 	DASHBOARD = 'dashboard',
 	VEHICLES = 'vehicles',
-	MAINTENANCES = 'maintenances',
 	NOT_FOUND = '**',
 }
 
@@ -30,11 +29,6 @@ const ROUTES: Routes = [
 			{
 				path: CORE_ROUTE_NAMES.VEHICLES,
 				loadChildren: () => import('@features/vehicles/vehicles.module').then(m => m.VehiclesModule),
-			},
-			{
-				path: CORE_ROUTE_NAMES.MAINTENANCES,
-				loadChildren: () =>
-					import('@features/maintenances/maintenances.module').then(m => m.MaintenancesModule),
 			},
 		],
 	},

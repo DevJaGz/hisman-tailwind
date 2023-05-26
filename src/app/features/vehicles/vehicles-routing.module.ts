@@ -13,6 +13,7 @@ export enum VEHICLES_ROUTE_NAMES {
 	BLANK = '',
 	ADD = 'new',
 	EDIT = ':license/edit',
+	MAINTENANCES = ':license/maintenances',
 }
 
 const routes: ROUTES = [
@@ -33,6 +34,10 @@ const routes: ROUTES = [
 		resolve: {
 			[VEHICLE_BY_LICENSE_RESOLVER_KEY]: vehicleByLicenseResolver,
 		},
+	},
+	{
+		path: VEHICLES_ROUTE_NAMES.MAINTENANCES,
+		loadChildren: () => import('@features/maintenances/maintenances.module').then(m => m.MaintenancesModule),
 	},
 ];
 

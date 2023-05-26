@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
+import { MaintenanceAddPageComponent } from '@features/maintenances/pages/maintenance-add-page/maintenance-add-page.component';
+import { MaintenanceEditPageComponent } from '@features/maintenances/pages/maintenance-edit-page/maintenance-edit-page.component';
 import { MaintenanceListPageComponent } from '@features/maintenances/pages/maintenance-list-page/maintenance-list-page.component';
 import {
 	VEHICLE_BY_LICENSE_RESOLVER_KEY,
@@ -9,18 +10,28 @@ import {
 
 export enum MAINTENANCE_ROUTE_NAMES {
 	BLANK = '',
-	LIST = ':license',
+	EDIT = ':maintenanceId',
+	ADD = 'new',
 }
 
 const ROUTES: Routes = [
 	{
 		path: MAINTENANCE_ROUTE_NAMES.BLANK,
-		redirectTo: `/${CORE_ROUTE_NAMES.VEHICLES}`,
-		pathMatch: 'full',
+		component: MaintenanceListPageComponent,
+		resolve: {
+			[VEHICLE_BY_LICENSE_RESOLVER_KEY]: vehicleByLicenseResolver,
+		},
 	},
 	{
-		path: MAINTENANCE_ROUTE_NAMES.LIST,
-		component: MaintenanceListPageComponent,
+		path: MAINTENANCE_ROUTE_NAMES.ADD,
+		component: MaintenanceAddPageComponent,
+		resolve: {
+			[VEHICLE_BY_LICENSE_RESOLVER_KEY]: vehicleByLicenseResolver,
+		},
+	},
+	{
+		path: MAINTENANCE_ROUTE_NAMES.EDIT,
+		component: MaintenanceEditPageComponent,
 		resolve: {
 			[VEHICLE_BY_LICENSE_RESOLVER_KEY]: vehicleByLicenseResolver,
 		},
