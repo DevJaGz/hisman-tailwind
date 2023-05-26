@@ -20,6 +20,7 @@ export class EditVehiclePageComponent implements OnInit {
 	form: FormGroup;
 	vehicle: IVehicle;
 	isEditBehavior = true;
+	cancelRoute: string[];
 
 	constructor(
 		public formService: VehicleFormService,
@@ -32,6 +33,8 @@ export class EditVehiclePageComponent implements OnInit {
 	ngOnInit(): void {
 		const vehicle = this.route.snapshot.data[VEHICLE_BY_LICENSE_RESOLVER_KEY];
 		this.form = this.formService.createForm(vehicle, this.isEditBehavior);
+		this.cancelRoute = [CORE_ROUTE_NAMES.VEHICLES];
+		this.blockUI.stop();
 	}
 
 	submitForm() {
