@@ -6,6 +6,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { FooterFixedBarComponent } from './components/footer-fixed-bar/footer-fixed-bar.component';
 import { FormFooterButtonsComponent } from './components/form-footer-buttons/form-footer-buttons.component';
+import { FormLayoutComponent } from './components/form-layout/form-layout.component';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { SrcFallbackDirective } from './directives/src-fallback.directive';
 import { UppercaseInputDirective } from './directives/uppercase-input.directive';
@@ -22,6 +23,7 @@ import { VehicleLabelPipe } from './pipes/vehicle-label.pipe';
 		VehicleLabelPipe,
 		FormFooterButtonsComponent,
 		FooterFixedBarComponent,
+		FormLayoutComponent,
 	],
 	imports: [CommonModule, FormsModule, NgOptimizedImage],
 	exports: [
@@ -35,6 +37,7 @@ import { VehicleLabelPipe } from './pipes/vehicle-label.pipe';
 		VehicleLabelPipe,
 		FormFooterButtonsComponent,
 		FooterFixedBarComponent,
+		FormLayoutComponent,
 	],
 })
 export class SharedModule {}

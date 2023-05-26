@@ -1,15 +1,10 @@
-<div class="h-full flex flex-col items-center pt-7">
-	<div class="flex-1 w-full max-w-5xl px-4 xl:px-0">
-		<h4 class="font-bold text-xl mb-4">Nuevo Mantenimiento</h4>
-		<div class="flex-1">
-			<app-maintenance-form></app-maintenance-form>
-		</div>
-	</div>
-	<app-footer-fixed-bar>
-		<app-form-footer-buttons
-			[formService]="formService"
-			[cancelRoute]="cancelRoute"
-			editLabel="Editar Mantenimiento"
-			addLabel="Añadir Mantenimiento"></app-form-footer-buttons>
-	</app-footer-fixed-bar>
-</div>
+<app-form-layout>
+	<h4 title-layout>Nuevo Mantenimiento</h4>
+	<app-maintenance-form form-layout></app-maintenance-form>
+	<app-form-footer-buttons
+		footer-buttons-layout
+		[formService]="formService"
+		[cancelRoute]="cancelRoute"
+		editLabel="Editar Mantenimiento"
+		addLabel="Añadir Mantenimiento"></app-form-footer-buttons>
+</app-form-layout>

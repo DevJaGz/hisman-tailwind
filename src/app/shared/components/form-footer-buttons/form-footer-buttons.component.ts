@@ -28,8 +28,6 @@ export class FormFooterButtonsComponent {
 	constructor(private router: Router) {}
 
 	cancel() {
-		console.log('cancelRoute', this.cancelRoute);
-
 		if (Array.isArray(this.cancelRoute)) {
 			this.router.navigate(this.cancelRoute);
 			return;
