@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IMaintenance } from '@core/interfaces/maintenance.interface';
 import { FormModel } from '@shared/models/form.model';
 
@@ -9,14 +9,6 @@ import { FormModel } from '@shared/models/form.model';
 export class MaintenanceFormService extends FormModel {
 	get form(): FormGroup {
 		return this._form;
-	}
-
-	get worksFormArray(): FormArray {
-		return this._form?.get('works') as FormArray;
-	}
-
-	get workForms(): FormGroup[] {
-		return this.worksFormArray?.controls as FormGroup[];
 	}
 
 	constructor(private fb: FormBuilder, ngZone: NgZone) {
