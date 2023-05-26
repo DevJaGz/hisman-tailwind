@@ -1,19 +1,19 @@
-<div class="w-full flex justify-end items-center flex-nowrap gap-12">
+<div class="w-full flex flex-col sm:flex-row justify-start sm:justify-end items-center flex-nowrap gap-8 sm:gap-12">
 	<button
-		class="btn btn-outline"
+		class="btn btn-outline w-full sm:w-auto"
 		(click)="cancel()">
 		{{ cancelLabel }}
 	</button>
 	<button
 		*ngIf="isEditBehavior; else addVehicleButtonTemplate"
-		class="btn btn-secondary"
+		class="btn btn-secondary w-full sm:w-auto"
 		(click)="submit()"
 		[disabled]="(formService.formStatus$ | async) !== 'VALID' || !formService.isDirty">
 		{{ editLabel }}
 	</button>
 	<ng-template #addVehicleButtonTemplate>
 		<button
-			class="btn btn-secondary"
+			class="btn btn-secondary w-full sm:w-auto"
 			[disabled]="(formService.formStatus$ | async) !== 'VALID'"
 			(click)="submit()">
 			{{ addLabel }}
