@@ -2,21 +2,21 @@
 	<button
 		class="btn btn-outline"
 		(click)="cancel()">
-		Cancelar
+		{{ cancelLabel }}
 	</button>
 	<button
 		*ngIf="isEditBehavior; else addVehicleButtonTemplate"
 		class="btn btn-secondary"
 		(click)="submit()"
 		[disabled]="(formService.formStatus$ | async) !== 'VALID' || !formService.isDirty">
-		Editar Vehículo
+		{{ editLabel }}
 	</button>
 	<ng-template #addVehicleButtonTemplate>
 		<button
 			class="btn btn-secondary"
 			[disabled]="(formService.formStatus$ | async) !== 'VALID'"
 			(click)="submit()">
-			Añadir Vehículo
+			{{ addLabel }}
 		</button>
 	</ng-template>
 </div>

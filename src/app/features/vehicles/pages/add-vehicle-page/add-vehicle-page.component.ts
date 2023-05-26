@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { AlertService } from '@core/services/alert.service';
 import { OwnerBridgeService } from '@core/services/owner/owner-bridge.service';
 import { DEFAULT_VEHICLE_FORM_VALUE } from '@features/vehicles/constants/vehicle-form.constant';
@@ -17,7 +18,7 @@ import { AppStateService } from '../../../../core/store/app-state.service';
 export class AddVehiclePageComponent implements OnInit {
 	// Decorator wires up blockUI instance
 	@BlockUI() blockUI: NgBlockUI;
-
+	cancelRoute: string[];
 	form: FormGroup;
 
 	constructor(
@@ -30,6 +31,7 @@ export class AddVehiclePageComponent implements OnInit {
 	ngOnInit() {
 		this.blockUI.start('Obteniendo Vehículos...');
 		this.form = this.formService.createForm();
+		this.cancelRoute = [CORE_ROUTE_NAMES.VEHICLES];
 		this.appStateService.selectVehicles$.pipe(filter(Boolean), take(1)).subscribe({
 			next: () => this.blockUI.stop(),
 		});
