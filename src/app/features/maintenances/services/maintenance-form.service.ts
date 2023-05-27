@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IMaintenance } from '@core/interfaces/maintenance.interface';
+import { DEFAULT_MAINTENANCE_FORM_VALUE } from '@features/maintenances/constans/maintenance-form.constant';
 import { IMaintenanceForm } from '@features/maintenances/interfaces/maintenance-form.interface';
 import { FormModel } from '@shared/models/form.model';
 
@@ -27,13 +28,22 @@ export class MaintenanceFormService extends FormModel {
 	override createForm(initValue: IMaintenance = {} as IMaintenance): FormGroup {
 		const { fb } = this;
 		const form = fb.group({
-			name: [initValue.name || null, [Validators.required, Validators.maxLength(20)]],
-			price: [initValue.price || 0, [Validators.required, Validators.min(0)]],
+			name: [
+				initValue.name || DEFAULT_MAINTENANCE_FORM_VALUE.name,
+				[Validators.required, Validators.maxLength(20)],
+			],
+			price: [initValue.price || DEFAULT_MAINTENANCE_FORM_VALUE.price, [Validators.required, Validators.min(0)]],
 			date: [initValue.date ? new Date(initValue.date) : new Date()],
-			location: [initValue.location, Validators.maxLength(30)],
-			technicianId: [initValue.technicianId || null],
-			technicianName: [initValue.technicianName || null, Validators.maxLength(30)],
-			description: [initValue.description || null, Validators.maxLength(500)],
+			location: [initValue.location || DEFAULT_MAINTENANCE_FORM_VALUE.location, Validators.maxLength(30)],
+			technicianId: [initValue.technicianId || DEFAULT_MAINTENANCE_FORM_VALUE.technicianId],
+			technicianName: [
+				initValue.technicianName || DEFAULT_MAINTENANCE_FORM_VALUE.technicianName,
+				Validators.maxLength(30),
+			],
+			description: [
+				initValue.description || DEFAULT_MAINTENANCE_FORM_VALUE.description,
+				Validators.maxLength(500),
+			],
 		});
 		super.afterFormCreated(form);
 		return form;

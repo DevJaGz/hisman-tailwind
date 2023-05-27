@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
 import { AppStateService } from '@core/store/app-state.service';
+import { DEFAULT_VEHICLE_FORM_VALUE } from '@features/vehicles/constants/vehicle-form.constant';
 import { IVehicleForm } from '@features/vehicles/interfaces/vehicle-form.interface';
 import { VALIDATOR_ERROR } from '@shared/constants/validator-errors.constant';
 import { FormModel } from '@shared/models/form.model';
@@ -45,14 +45,14 @@ export class VehicleFormService extends FormModel {
 		const form = fb.group({
 			license: [
 				{
-					value: initValue.license || null,
+					value: initValue.license || DEFAULT_VEHICLE_FORM_VALUE.license,
 					disabled: isEditBehavior,
 				},
 				[Validators.required, Validators.maxLength(10)],
 			],
-			type: [initValue.type || VEHICLE_TYPE.CAR, Validators.required],
-			alias: [initValue.alias || null, [Validators.maxLength(20)]],
-			documents: [initValue.documents || []],
+			type: [initValue.type || DEFAULT_VEHICLE_FORM_VALUE.type, Validators.required],
+			alias: [initValue.alias || DEFAULT_VEHICLE_FORM_VALUE.alias, [Validators.maxLength(20)]],
+			documents: [initValue.documents || DEFAULT_VEHICLE_FORM_VALUE.documents],
 		});
 		if (!isEditBehavior) {
 			form.get('license').setAsyncValidators(alreadyExistsAsyncValidator(this.vehicleLinceseList$));
