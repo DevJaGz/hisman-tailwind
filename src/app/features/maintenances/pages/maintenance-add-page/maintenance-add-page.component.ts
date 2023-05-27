@@ -17,6 +17,10 @@ export class MaintenanceAddPageComponent implements OnInit {
 	vehicle: IVehicle;
 	cancelRoute: string[];
 
+	submitForm(): void {
+		console.log('submitForm', this.formService.rawValue);
+	}
+
 	constructor(public formService: MaintenanceFormService, private route: ActivatedRoute) {}
 
 	ngOnInit(): void {
