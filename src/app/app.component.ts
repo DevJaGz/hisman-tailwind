@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UserAdapter } from '@core/adapters/user.adapter';
+import { SHORT_DURATION } from '@core/constants/alert.constant';
 import { AppThemeService } from '@core/services/app-theme.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { AlertService } from './core/services/alert.service';
@@ -45,7 +46,7 @@ export class AppComponent implements OnInit {
 				// If there is owner, then the Authentication was succesffully
 				if (user) {
 					this.alertService.showInfo('Bienvenido', this.userAdapter.adaptName(user.displayName), {
-						displayingTime: 4000,
+						displayingTime: SHORT_DURATION,
 					});
 					// Update/Create the owner in Firestore
 					this.ownerBridgeService.upsert(user).subscribe();

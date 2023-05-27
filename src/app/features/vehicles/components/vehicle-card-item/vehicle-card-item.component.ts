@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { MIDIUM_DURATION } from '@core/constants/alert.constant';
 import { VEHICLE_TYPE } from '@core/constants/vehicle.constant';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
@@ -50,7 +51,7 @@ export class VehicleCardItemComponent {
 			complete: () => {
 				this.blockUI.stop();
 				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido eliminado.', {
-					displayingTime: 8000,
+					displayingTime: MIDIUM_DURATION,
 				});
 			},
 		});

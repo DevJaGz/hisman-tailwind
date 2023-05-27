@@ -109,7 +109,7 @@ export class OwnerService implements OwnerRepository {
 				}
 				const newOwner: IOwner = this.userAdapter.toNewOwner(user);
 				this.appStateService.setOwnerState(newOwner);
-				return this.firestoreService.createDocumentByUID<IOwner>(collectionName, newOwner);
+				return this.firestoreService.createDocument<IOwner>(collectionName, newOwner);
 			})
 		);
 	}

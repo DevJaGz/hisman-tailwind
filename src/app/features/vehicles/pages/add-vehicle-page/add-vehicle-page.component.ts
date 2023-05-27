@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MIDIUM_DURATION } from '@core/constants/alert.constant';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { AlertService } from '@core/services/alert.service';
 import { OwnerBridgeService } from '@core/services/owner/owner-bridge.service';
@@ -45,7 +46,7 @@ export class AddVehiclePageComponent implements OnInit {
 				this.blockUI.stop();
 				this.formService.reset(DEFAULT_VEHICLE_FORM_VALUE);
 				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido añadido.', {
-					displayingTime: 8000,
+					displayingTime: MIDIUM_DURATION,
 				});
 			},
 		});

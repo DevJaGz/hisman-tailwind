@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MIDIUM_DURATION } from '@core/constants/alert.constant';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { AlertService } from '@core/services/alert.service';
@@ -44,7 +45,7 @@ export class EditVehiclePageComponent implements OnInit {
 			complete: () => {
 				this.blockUI.stop();
 				this.alertService.showSuccess('!Excelente!', 'Tu vehículo ha sido editado.', {
-					displayingTime: 8000,
+					displayingTime: MIDIUM_DURATION,
 				});
 				this.router.navigate([CORE_ROUTE_NAMES.VEHICLES]);
 			},
