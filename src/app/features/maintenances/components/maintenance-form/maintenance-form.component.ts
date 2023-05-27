@@ -19,7 +19,7 @@ export class MaintenanceFormComponent implements OnInit {
 		return this.host;
 	}
 
-	constructor(private formService: MaintenanceFormService, private host: ElementRef<HTMLElement>) {}
+	constructor(public formService: MaintenanceFormService, private host: ElementRef<HTMLElement>) {}
 
 	ngOnInit(): void {
 		this.form = this.formService.createForm();

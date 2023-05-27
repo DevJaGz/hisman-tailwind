@@ -24,6 +24,11 @@ export abstract class FormModel {
 		return control?.hasError(VALIDATOR_ERROR.MAX_LENGTH) && control.dirty;
 	}
 
+	hasControlMinError(controlName: string): boolean {
+		const control = this._form?.get(controlName);
+		return control?.hasError(VALIDATOR_ERROR.MIN) && control.dirty;
+	}
+
 	reset(value?: unknown) {
 		value ? this._form.reset(value) : this._form.reset();
 	}

@@ -30,9 +30,9 @@ export class MaintenanceFormService extends FormModel {
 			name: [initValue.name || null, [Validators.required, Validators.maxLength(20)]],
 			price: [initValue.price || 0, [Validators.required, Validators.min(0)]],
 			date: [initValue.date ? new Date(initValue.date) : new Date()],
-			location: [initValue.location, Validators.maxLength(100)],
+			location: [initValue.location, Validators.maxLength(30)],
 			technicianId: [initValue.technicianId || null],
-			technicianName: [initValue.technicianName || null],
+			technicianName: [initValue.technicianName || null, Validators.maxLength(30)],
 			description: [initValue.description || null, Validators.maxLength(500)],
 		});
 		super.afterFormCreated(form);
