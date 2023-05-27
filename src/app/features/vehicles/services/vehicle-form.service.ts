@@ -16,6 +16,14 @@ export class VehicleFormService extends FormModel {
 		return this._form;
 	}
 
+	get value(): IVehicleForm {
+		return this._form.value;
+	}
+
+	get rawValue(): IVehicleForm {
+		return this._form.getRawValue();
+	}
+
 	get licenseControl(): AbstractControl {
 		return this._form?.get('license');
 	}

@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IMaintenance } from '@core/interfaces/maintenance.interface';
+import { IMaintenanceForm } from '@features/maintenances/interfaces/maintenance-form.interface';
 import { FormModel } from '@shared/models/form.model';
 
 @Injectable({
@@ -9,6 +10,14 @@ import { FormModel } from '@shared/models/form.model';
 export class MaintenanceFormService extends FormModel {
 	get form(): FormGroup {
 		return this._form;
+	}
+
+	get value(): IMaintenanceForm {
+		return this._form.value;
+	}
+
+	get rawValue(): IMaintenanceForm {
+		return this._form.getRawValue();
 	}
 
 	constructor(private fb: FormBuilder, ngZone: NgZone) {

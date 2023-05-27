@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
+import { MaintenanceBridgeService } from '@core/services/maintenances/maintenance-bridge.service';
 import { MaintenanceFormService } from '@features/maintenances/services/maintenance-form.service';
 import { VEHICLES_ROUTE_NAMES } from '@features/vehicles/vehicles-routing.module';
 import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-license.resolver';
@@ -18,10 +19,14 @@ export class MaintenanceAddPageComponent implements OnInit {
 	cancelRoute: string[];
 
 	submitForm(): void {
-		console.log('submitForm', this.formService.rawValue);
+		this.maintenanceBridgeService.addMaintenance$(this.formService.rawValue).subscribe();
 	}
 
-	constructor(public formService: MaintenanceFormService, private route: ActivatedRoute) {}
+	constructor(
+		public formService: MaintenanceFormService,
+		private route: ActivatedRoute,
+		private maintenanceBridgeService: MaintenanceBridgeService
+	) {}
 
 	ngOnInit(): void {
 		this.vehicle = this.route.snapshot.data[VEHICLE_BY_LICENSE_RESOLVER_KEY];

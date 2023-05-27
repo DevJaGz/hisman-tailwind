@@ -1,8 +1,8 @@
 export interface IMaintenance {
 	id?: string;
-	ownerId: string;
-	vehicleOwnerIndex?: number;
-	vehicleOwnerId?: number;
+	vehicleLicense?: number;
+	ownerUID: string;
+	ownerName?: string;
 	name: string;
 	date: Date | string;
 	price: number;
@@ -10,11 +10,4 @@ export interface IMaintenance {
 	technicianId?: string;
 	technicianName?: string;
 	description?: string;
-	works: IMaintenanceWork[];
-}
-
-export interface IMaintenanceWork {
-	id?: string;
-	description: string;
-	images: string[];
 }

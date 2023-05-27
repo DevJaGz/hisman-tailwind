@@ -7,8 +7,10 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AuthenticationRepository } from '@core/repositories/authentication.repository';
+import { MaintenanceRepository } from '@core/repositories/maintenance.repository';
 import { OwnerRepository } from '@core/repositories/owner.repository';
 import { AuthenticationService } from '@core/services/authentication/authentication.service';
+import { MaintenanceService } from '@core/services/maintenances/maintenance.service';
 import { OwnerService } from '@core/services/owner/owner.service';
 import { SharedModule } from '@shared/shared.module';
 import { BlockUIModule } from 'ng-block-ui';
@@ -37,6 +39,10 @@ import { AppComponent } from './app.component';
 		{
 			provide: OwnerRepository,
 			useExisting: OwnerService,
+		},
+		{
+			provide: MaintenanceRepository,
+			useExisting: MaintenanceService,
 		},
 	],
 	bootstrap: [AppComponent],

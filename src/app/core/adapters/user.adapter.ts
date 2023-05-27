@@ -7,7 +7,7 @@ import { IVehicle } from '@core/interfaces/vehicle.interface';
 	providedIn: 'root',
 })
 export class UserAdapter {
-	toPartalOwner(user: IUser): IUserOwner {
+	toPartialOwner(user: IUser): IUserOwner {
 		return {
 			uid: user.uid,
 			image: user.photoURL,
@@ -26,7 +26,7 @@ export class UserAdapter {
 
 	toNewOwner(user: IUser): IOwner {
 		return {
-			...this.toPartalOwner(user),
+			...this.toPartialOwner(user),
 			vehicles: [] as IVehicle[],
 			documents: [] as IDocument[],
 		};
@@ -34,7 +34,7 @@ export class UserAdapter {
 
 	toUpdateOwner(user: IUser, owner: IOwner): IOwner {
 		return {
-			...this.toPartalOwner(user),
+			...this.toPartialOwner(user),
 			vehicles: owner.vehicles,
 			documents: owner.documents,
 		};

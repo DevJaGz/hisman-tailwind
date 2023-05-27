@@ -11,6 +11,10 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 export class AppStateService {
 	private appState$: BehaviorSubject<IAppState> = new BehaviorSubject<IAppState>(DEFAULT_APP_STATE);
 
+	get selectOwnerState(): IOwner {
+		return this.appState$.value.owner;
+	}
+
 	get selectOwnerState$(): Observable<IOwner> {
 		return this.appState$.asObservable().pipe(map(state => state.owner));
 	}

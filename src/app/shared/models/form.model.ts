@@ -1,19 +1,10 @@
 import { NgZone } from '@angular/core';
 import { FormControlStatus, FormGroup } from '@angular/forms';
-import { IVehicleForm } from '@features/vehicles/interfaces/vehicle-form.interface';
 import { VALIDATOR_ERROR } from '@shared/constants/validator-errors.constant';
 import { Observable } from 'rxjs';
 
 export abstract class FormModel {
 	abstract createForm(): FormGroup;
-
-	get value(): IVehicleForm {
-		return this._form.value;
-	}
-
-	get rawValue(): IVehicleForm {
-		return this._form.getRawValue();
-	}
 
 	get formStatus$(): Observable<FormControlStatus> {
 		return this._form.statusChanges;
