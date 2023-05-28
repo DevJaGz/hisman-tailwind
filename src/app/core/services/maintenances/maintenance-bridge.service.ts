@@ -10,4 +10,8 @@ export class MaintenanceBridgeService {
 	addMaintenance$(value: Partial<IMaintenance>): Observable<IMaintenance> {
 		return this.respository.addMaintenance$(value);
 	}
+
+	getMaintenancesByVehicleLicense$(vehicleLicense: string): Observable<IMaintenance[]> {
+		return this.respository.getMaintenancesByVehicleLicense$(vehicleLicense);
+	}
 }

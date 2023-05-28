@@ -11,3 +11,7 @@ export interface IMaintenance {
 	technicianName?: string;
 	description?: string;
 }
+
+export type Maintenances = {
+	[key: string]: IMaintenance[];
+};

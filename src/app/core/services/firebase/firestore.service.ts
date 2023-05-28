@@ -87,6 +87,18 @@ export class FirestoreService {
 		);
 	}
 
+	getDocumentsByVehicleLicense(collectionName: string, vehicleLicense: string): Observable<DocumentData[]> {
+		// Reference of the collection in the Firestore
+		const collectionRef = collection(this.firestore, collectionName);
+		// Query to find the document
+		const documentQuery = query(collectionRef, where('vehicleLicense', '==', vehicleLicense));
+		return from(getDocs(documentQuery)).pipe(
+			map(querySnapshot => {
+				return querySnapshot.docs.map(doc => doc.data());
+			})
+		);
+	}
+
 	createDocument<T = DocumentData>(collectionName: string, documentData: T): Observable<T> {
 		// Reference of the collection in the Firestore
 		const collectionRef = collection(this.firestore, collectionName);

@@ -4,6 +4,10 @@ import { MaintenanceAddPageComponent } from '@features/maintenances/pages/mainte
 import { MaintenanceEditPageComponent } from '@features/maintenances/pages/maintenance-edit-page/maintenance-edit-page.component';
 import { MaintenanceListPageComponent } from '@features/maintenances/pages/maintenance-list-page/maintenance-list-page.component';
 import {
+	MAINTENANCE_BY_LICENSE_RESOLVER_KEY,
+	maintenanceByLicenseResolver,
+} from '@shared/resolvers/maintenance-by-license.resolver';
+import {
 	VEHICLE_BY_LICENSE_RESOLVER_KEY,
 	vehicleByLicenseResolver,
 } from '@shared/resolvers/vehicle-by-license.resolver';
@@ -20,6 +24,7 @@ const ROUTES: Routes = [
 		component: MaintenanceListPageComponent,
 		resolve: {
 			[VEHICLE_BY_LICENSE_RESOLVER_KEY]: vehicleByLicenseResolver,
+			[MAINTENANCE_BY_LICENSE_RESOLVER_KEY]: maintenanceByLicenseResolver,
 		},
 	},
 	{

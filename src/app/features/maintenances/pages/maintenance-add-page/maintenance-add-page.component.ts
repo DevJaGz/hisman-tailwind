@@ -37,8 +37,6 @@ export class MaintenanceAddPageComponent implements OnInit {
 				next: maintenance => {
 					this.blockUI.stop();
 					this.appStateService.pushMaintenanceState(maintenance);
-					console.log('State', this.appStateService.selectAppState);
-
 					this.formService.reset(DEFAULT_MAINTENANCE_FORM_VALUE);
 					this.alertService.showSuccess('!Excelente!', 'Tu Mantenimiento ha sido añadido.', {
 						displayingTime: MIDIUM_DURATION,

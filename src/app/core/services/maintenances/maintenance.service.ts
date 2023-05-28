@@ -16,6 +16,12 @@ export class MaintenanceService implements MaintenanceRepository {
 		return this.firestoreService.createDocument(this.collectionName, maintenance);
 	}
 
+	getMaintenancesByVehicleLicense$(vehicleLicense: string): Observable<IMaintenance[]> {
+		return this.firestoreService.getDocumentsByVehicleLicense(this.collectionName, vehicleLicense) as Observable<
+			IMaintenance[]
+		>;
+	}
+
 	constructor(
 		private adapter: MaintenanceAdapter,
 		private appStateService: AppStateService,
