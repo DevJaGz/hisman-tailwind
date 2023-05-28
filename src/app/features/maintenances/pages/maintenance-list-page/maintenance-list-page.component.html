@@ -104,4 +104,13 @@
 			</svg>
 		</button>
 	</header>
+	<main class="pb-8 flex flex-col gap-4">
+		<ng-container *ngIf="maintenances?.length; else noMaintenancesTemplate">
+			<app-maintenance-item
+				*ngFor="let maintenance of maintenances"
+				[maintenance]="maintenance"></app-maintenance-item>
+		</ng-container>
+	</main>
 </div>
+
+<ng-template #noMaintenancesTemplate> No tienes mantenimientos para este vehículo. </ng-template>

@@ -6,6 +6,7 @@ import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { MAINTENANCE_ROUTE_NAMES } from '@features/maintenances/maintenances-routing.module';
 import { MAINTENANCE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/maintenance-by-license.resolver';
 import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-license.resolver';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
 	selector: 'app-maintenance-list-page',
@@ -14,6 +15,7 @@ import { VEHICLE_BY_LICENSE_RESOLVER_KEY } from '@shared/resolvers/vehicle-by-li
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaintenanceListPageComponent implements OnInit {
+	@BlockUI() blockUI: NgBlockUI;
 	vehicle: IVehicle;
 	maintenances: IMaintenance[];
 	addMaintenance() {
@@ -31,6 +33,6 @@ export class MaintenanceListPageComponent implements OnInit {
 	ngOnInit(): void {
 		this.vehicle = this.route.snapshot.data[VEHICLE_BY_LICENSE_RESOLVER_KEY];
 		this.maintenances = this.route.snapshot.data[MAINTENANCE_BY_LICENSE_RESOLVER_KEY];
-		console.log(this.maintenances);
+		this.blockUI.stop();
 	}
 }

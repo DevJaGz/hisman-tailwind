@@ -1,0 +1,9 @@
+<section class="card bg-base-100 dark:bg-neutral-900 shadow-md px-4 py-5 rounded-lg">
+	<div class="flex items-center justify-between">
+		<p class="font-bold text-md">{{ name }}</p>
+	</div>
+	<p>{{ date | date : 'd/M/yyyy h:mm a' }}</p>
+	<div class="flex">
+		<p class="mt-2">{{ description || 'Sin descripción.' }}</p>
+	</div>
+</section>

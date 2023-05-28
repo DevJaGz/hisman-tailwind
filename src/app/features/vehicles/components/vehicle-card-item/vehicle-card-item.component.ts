@@ -31,6 +31,7 @@ export class VehicleCardItemComponent {
 	) {}
 
 	seeMaintenances() {
+		this.blockUI.start('Cargando...');
 		const URL = [
 			CORE_ROUTE_NAMES.VEHICLES,
 			this.vehicle?.license,

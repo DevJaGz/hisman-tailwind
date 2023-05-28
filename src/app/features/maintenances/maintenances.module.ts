@@ -8,6 +8,7 @@ import { MaintenancesRoutingModule } from './maintenances-routing.module';
 import { MaintenanceAddPageComponent } from './pages/maintenance-add-page/maintenance-add-page.component';
 import { MaintenanceEditPageComponent } from './pages/maintenance-edit-page/maintenance-edit-page.component';
 import { MaintenanceListPageComponent } from './pages/maintenance-list-page/maintenance-list-page.component';
+import { MaintenanceItemComponent } from './components/maintenance-item/maintenance-item.component';
 
 @NgModule({
 	declarations: [
@@ -15,6 +16,7 @@ import { MaintenanceListPageComponent } from './pages/maintenance-list-page/main
 		MaintenanceAddPageComponent,
 		MaintenanceEditPageComponent,
 		MaintenanceFormComponent,
+		MaintenanceItemComponent,
 	],
 	imports: [CommonModule, MaintenancesRoutingModule, SharedModule, ReactiveFormsModule],
 })
