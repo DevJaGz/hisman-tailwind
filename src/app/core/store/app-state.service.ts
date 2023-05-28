@@ -12,6 +12,10 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 export class AppStateService {
 	private appState$: BehaviorSubject<IAppState> = new BehaviorSubject<IAppState>(DEFAULT_APP_STATE);
 
+	get selectAppState(): IAppState {
+		return this.appState$.value;
+	}
+
 	get selectOwnerState(): IOwner {
 		return this.appState$.value.owner;
 	}
@@ -49,16 +53,21 @@ export class AppStateService {
 		const currentAppState = this.appState$.value;
 		// Get maintenances by vehicle license
 		const currentMaintenances = currentAppState.maintenances[maintenance.vehicleLicense];
-		// Get index of maintenance by validatePropertyName
-		const maintenanceIndex = currentMaintenances?.findIndex(
-			maintenance => maintenance[validatePropertyName] === maintenance[validatePropertyName]
-		);
-		if (maintenanceIndex !== -1) {
-			// Maintenance is already exist, update it
-			currentMaintenances[maintenanceIndex] = maintenance;
+		if (currentMaintenances) {
+			// Get index of maintenance by validatePropertyName
+			const maintenanceIndex = currentMaintenances?.findIndex(
+				currentMaintenance => currentMaintenance[validatePropertyName] === maintenance[validatePropertyName]
+			);
+			if (maintenanceIndex !== -1) {
+				// Maintenance is already exist, update it
+				currentMaintenances[maintenanceIndex] = maintenance;
+			} else {
+				// Maintenance is not exist, push it
+				currentMaintenances.push(maintenance);
+			}
 		} else {
-			// Maintenance is not exist, push it
-			currentMaintenances.push(maintenance);
+			// Create new array of maintenances
+			currentAppState.maintenances[maintenance.vehicleLicense] = [maintenance];
 		}
 	}
 

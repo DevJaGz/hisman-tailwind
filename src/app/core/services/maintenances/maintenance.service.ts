@@ -3,7 +3,6 @@ import { MaintenanceAdapter } from '@core/adapters/maintenance.adapter';
 import { IMaintenance } from '@core/interfaces/maintenance.interface';
 import { MaintenanceRepository } from '@core/repositories/maintenance.repository';
 import { FirestoreService } from '@core/services/firebase/firestore.service';
-import { IMaintenanceForm } from '@features/maintenances/interfaces/maintenance-form.interface';
 import { Observable } from 'rxjs';
 import { AppStateService } from '../../store/app-state.service';
 
@@ -11,9 +10,9 @@ import { AppStateService } from '../../store/app-state.service';
 export class MaintenanceService implements MaintenanceRepository {
 	private readonly collectionName = 'maintenances';
 
-	addMaintenance$(formValue: IMaintenanceForm): Observable<IMaintenance> {
+	addMaintenance$(value: Partial<IMaintenance>): Observable<IMaintenance> {
 		const owner = this.appStateService.selectOwnerState;
-		const maintenance = this.adapter.toNewMaintenance(formValue, owner);
+		const maintenance = this.adapter.toNewMaintenance(value, owner);
 		return this.firestoreService.createDocument(this.collectionName, maintenance);
 	}
 

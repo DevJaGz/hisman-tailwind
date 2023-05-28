@@ -30,15 +30,15 @@ export class MaintenanceFormService extends FormModel {
 		const form = fb.group({
 			name: [
 				initValue.name || DEFAULT_MAINTENANCE_FORM_VALUE.name,
-				[Validators.required, Validators.maxLength(20)],
+				[Validators.required, Validators.maxLength(40)],
 			],
 			price: [initValue.price || DEFAULT_MAINTENANCE_FORM_VALUE.price, [Validators.required, Validators.min(0)]],
 			date: [initValue.date ? new Date(initValue.date) : new Date()],
-			location: [initValue.location || DEFAULT_MAINTENANCE_FORM_VALUE.location, Validators.maxLength(30)],
+			location: [initValue.location || DEFAULT_MAINTENANCE_FORM_VALUE.location, Validators.maxLength(40)],
 			technicianId: [initValue.technicianId || DEFAULT_MAINTENANCE_FORM_VALUE.technicianId],
 			technicianName: [
 				initValue.technicianName || DEFAULT_MAINTENANCE_FORM_VALUE.technicianName,
-				Validators.maxLength(30),
+				Validators.maxLength(40),
 			],
 			description: [
 				initValue.description || DEFAULT_MAINTENANCE_FORM_VALUE.description,

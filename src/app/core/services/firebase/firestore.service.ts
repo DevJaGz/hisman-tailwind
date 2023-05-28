@@ -90,7 +90,7 @@ export class FirestoreService {
 	createDocument<T = DocumentData>(collectionName: string, documentData: T): Observable<T> {
 		// Reference of the collection in the Firestore
 		const collectionRef = collection(this.firestore, collectionName);
-		return from(addDoc(collectionRef, documentData)).pipe(map(() => documentData));
+		return from(addDoc(collectionRef, documentData)).pipe(map(doc => ({ ...documentData, id: doc.id })));
 	}
 
 	setDocument<T = DocumentData>(docRef: DocumentReference<T>, documentData: T): Observable<T> {
