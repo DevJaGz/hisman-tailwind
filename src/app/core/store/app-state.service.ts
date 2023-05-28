@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DEFAULT_APP_STATE } from '@core/constants/app-state.constant';
 import { IAppState } from '@core/interfaces/app-state.interface';
+import { IMaintenance } from '@core/interfaces/maintenance.interface';
 import { IOwner } from '@core/interfaces/users.interface';
 import { IVehicle } from '@core/interfaces/vehicle.interface';
 import { BehaviorSubject, Observable, map } from 'rxjs';
@@ -27,20 +28,47 @@ export class AppStateService {
 		);
 	}
 
+	selectMaintenancesByVehicle$(license: string): Observable<IMaintenance[]> {
+		return this.appState$
+			.asObservable()
+			.pipe(
+				map(state => state.maintenances[license]?.filter(maintenance => maintenance.vehicleLicense === license))
+			);
+	}
+
 	selectVehicle$(license: string): Observable<IVehicle> {
 		return this.selectVehicles$.pipe(map(vehicles => vehicles.find(vehicle => vehicle.license === license)));
 	}
 
 	setOwnerState(partialOwner: Partial<IOwner>) {
-		this.setPartialAppState<IOwner>('owner', partialOwner);
+		this.setAppStateProperty<IOwner>('owner', partialOwner);
 	}
 
-	private setPartialAppState<K>(appPropertyName: keyof IAppState, value: Partial<K>) {
+	pushMaintenanceState(maintenance: IMaintenance, validatePropertyName: keyof IMaintenance = 'id') {
+		// Get current app state
 		const currentAppState = this.appState$.value;
+		// Get maintenances by vehicle license
+		const currentMaintenances = currentAppState.maintenances[maintenance.vehicleLicense];
+		// Get index of maintenance by validatePropertyName
+		const maintenanceIndex = currentMaintenances?.findIndex(
+			maintenance => maintenance[validatePropertyName] === maintenance[validatePropertyName]
+		);
+		if (maintenanceIndex !== -1) {
+			// Maintenance is already exist, update it
+			currentMaintenances[maintenanceIndex] = maintenance;
+		} else {
+			// Maintenance is not exist, push it
+			currentMaintenances.push(maintenance);
+		}
+	}
+
+	private setAppStateProperty<K>(appPropertyName: keyof IAppState, value: Partial<K>) {
+		const currentAppState = this.appState$.value;
+		const currentPropertyValue = currentAppState[appPropertyName];
 		this.appState$.next({
 			...currentAppState,
 			[appPropertyName]: {
-				...currentAppState[appPropertyName],
+				...currentPropertyValue,
 				...value,
 			},
 		});

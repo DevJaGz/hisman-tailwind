@@ -1,6 +1,6 @@
 export interface IMaintenance {
 	id?: string;
-	vehicleLicense?: number;
+	vehicleLicense?: string;
 	ownerUID: string;
 	ownerName?: string;
 	name: string;
