@@ -30,7 +30,7 @@
 						</svg>
 					</button>
 				</header>
-				<div class="flex-1">
+				<div class="flex-1 pb-8">
 					<app-vehicle-card-list [vehicles]="vehicles"></app-vehicle-card-list>
 				</div>
 			</ng-container>
@@ -38,7 +38,7 @@
 	</div>
 </div>
 <ng-template #NoVehiclesTemplate>
-	<div class="flex flex-col items-center mt-32">
+	<div class="flex flex-col items-center mt-32 pb-12">
 		<app-empty-state
 			title="No hay vehículos"
 			message="Actualmente no ha añadido ningún vehículo."
