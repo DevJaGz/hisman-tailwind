@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { DEFAULT_DATE_FORMAT } from '@core/constants/app-state.constant';
 import { IMaintenance } from '@core/interfaces/maintenance.interface';
 
 @Component({
@@ -10,6 +11,8 @@ import { IMaintenance } from '@core/interfaces/maintenance.interface';
 export class MaintenanceItemComponent {
 	@Input()
 	maintenance: IMaintenance;
+
+	defaultFormat = DEFAULT_DATE_FORMAT;
 
 	get date(): string {
 		return this.maintenance?.date as string;
