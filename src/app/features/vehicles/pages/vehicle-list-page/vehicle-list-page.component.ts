@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { VEHICLES_ROUTE_NAMES } from '@features/vehicles/vehicles-routing.module';
@@ -11,10 +11,14 @@ import { AppStateService } from '../../../../core/store/app-state.service';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleListPageComponent {
+export class VehicleListPageComponent implements OnInit {
 	@BlockUI() blockUI: NgBlockUI;
 	vehicles$ = this.appStateService.selectVehicles$;
 	constructor(private router: Router, private appStateService: AppStateService) {}
+
+	ngOnInit(): void {
+		this.blockUI.stop();
+	}
 
 	addNewVehicle() {
 		this.router.navigate([CORE_ROUTE_NAMES.VEHICLES, VEHICLES_ROUTE_NAMES.ADD]);

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Router } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@core/core-routing.module';
 import { FormModel } from '@shared/models/form.model';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
 	selector: 'app-form-footer-buttons',
@@ -10,6 +11,7 @@ import { FormModel } from '@shared/models/form.model';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormFooterButtonsComponent {
+	@BlockUI() blockUI: NgBlockUI;
 	@Input()
 	isEditBehavior = false;
 	@Input()
@@ -28,6 +30,7 @@ export class FormFooterButtonsComponent {
 	constructor(private router: Router) {}
 
 	cancel() {
+		this.blockUI.start('Cargando...');
 		if (Array.isArray(this.cancelRoute)) {
 			this.router.navigate(this.cancelRoute);
 			return;
