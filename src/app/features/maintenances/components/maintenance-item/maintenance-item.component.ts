@@ -3,6 +3,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
+	HostListener,
 	Input,
 	Renderer2,
 	ViewChild,
@@ -49,8 +50,17 @@ export class MaintenanceItemComponent implements AfterViewInit {
 
 	constructor(private renderer: Renderer2) {}
 
-	ngAfterViewInit(): void {
+	private setHeightTextArea(): void {
 		const textAreaDescriptionElement = this.textAreaDescription.nativeElement;
 		this.renderer.setStyle(textAreaDescriptionElement, 'height', `${textAreaDescriptionElement.scrollHeight}px`);
+	}
+
+	ngAfterViewInit(): void {
+		this.setHeightTextArea();
+	}
+
+	@HostListener('window:resize')
+	onWindowResize(): void {
+		this.setHeightTextArea();
 	}
 }
