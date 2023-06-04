@@ -4,6 +4,7 @@ import {
 	DocumentReference,
 	DocumentSnapshot,
 	Firestore,
+	OrderByDirection,
 	Query,
 	QueryDocumentSnapshot,
 	addDoc,
@@ -13,6 +14,7 @@ import {
 	doc,
 	getDoc,
 	getDocs,
+	orderBy,
 	query,
 	setDoc,
 	where,
@@ -87,11 +89,19 @@ export class FirestoreService {
 		);
 	}
 
-	getDocumentsByVehicleLicense(collectionName: string, vehicleLicense: string): Observable<DocumentData[]> {
+	getDocumentsByVehicleLicense(
+		collectionName: string,
+		vehicleLicense: string,
+		orderValue: { prop: string; order: OrderByDirection }
+	): Observable<DocumentData[]> {
 		// Reference of the collection in the Firestore
 		const collectionRef = collection(this.firestore, collectionName);
 		// Query to find the document
-		const documentQuery = query(collectionRef, where('vehicleLicense', '==', vehicleLicense));
+		const documentQuery = query(
+			collectionRef,
+			where('vehicleLicense', '==', vehicleLicense),
+			orderBy(orderValue.prop, orderValue.order)
+		);
 		return from(getDocs(documentQuery)).pipe(
 			map(querySnapshot => {
 				return querySnapshot.docs.map(doc => doc.data());
