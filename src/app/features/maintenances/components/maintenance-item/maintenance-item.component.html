@@ -6,4 +6,9 @@
 	<div class="flex">
 		<p class="mt-2">{{ description || 'Sin descripción.' }}</p>
 	</div>
+	<div class="mt-4"><span class="font-bold">Técnico:</span> {{ technicianName || 'No especificado.' }}</div>
+	<div class="flex items-center justify-between">
+		<div><span class="font-bold">Lugar:</span> {{ location || 'No especificado.' }}</div>
+		<div>{{ price | number : '1.0-0' }} <span class="font-bold">COP</span></div>
+	</div>
 </section>

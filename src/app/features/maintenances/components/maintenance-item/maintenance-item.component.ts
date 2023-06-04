@@ -25,4 +25,16 @@ export class MaintenanceItemComponent {
 	get description(): string {
 		return this.maintenance?.description;
 	}
+
+	get location(): string {
+		return this.maintenance?.location;
+	}
+
+	get price(): number {
+		return this.maintenance?.price;
+	}
+
+	get technicianName(): string {
+		return this.maintenance?.technicianName;
+	}
 }
