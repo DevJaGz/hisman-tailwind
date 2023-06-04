@@ -32,6 +32,7 @@ export class MaintenanceAddPageComponent implements OnInit {
 			.addMaintenance$({
 				...fomValue,
 				vehicleLicense: this.vehicle.license,
+				description: encodeURIComponent(fomValue.description),
 			})
 			.subscribe({
 				next: maintenance => {

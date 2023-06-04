@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	Input,
+	Renderer2,
+	ViewChild,
+} from '@angular/core';
 import { DEFAULT_DATE_FORMAT } from '@core/constants/app-state.constant';
 import { IMaintenance } from '@core/interfaces/maintenance.interface';
 
@@ -8,7 +16,8 @@ import { IMaintenance } from '@core/interfaces/maintenance.interface';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MaintenanceItemComponent {
+export class MaintenanceItemComponent implements AfterViewInit {
+	@ViewChild('textAreaDescription', { static: true }) textAreaDescription: ElementRef<HTMLTextAreaElement>;
 	@Input()
 	maintenance: IMaintenance;
 
@@ -23,11 +32,11 @@ export class MaintenanceItemComponent {
 	}
 
 	get description(): string {
-		return this.maintenance?.description;
+		return decodeURIComponent(this.maintenance?.description || 'Sin descripción.');
 	}
 
 	get location(): string {
-		return this.maintenance?.location;
+		return this.maintenance?.location || 'No especificado.';
 	}
 
 	get price(): number {
@@ -35,6 +44,13 @@ export class MaintenanceItemComponent {
 	}
 
 	get technicianName(): string {
-		return this.maintenance?.technicianName;
+		return this.maintenance?.technicianName || 'No especificado.';
+	}
+
+	constructor(private renderer: Renderer2) {}
+
+	ngAfterViewInit(): void {
+		const textAreaDescriptionElement = this.textAreaDescription.nativeElement;
+		this.renderer.setStyle(textAreaDescriptionElement, 'height', `${textAreaDescriptionElement.scrollHeight}px`);
 	}
 }
