@@ -52,7 +52,13 @@ export class MaintenanceItemComponent implements AfterViewInit {
 
 	private setHeightTextArea(): void {
 		const textAreaDescriptionElement = this.textAreaDescription.nativeElement;
-		this.renderer.setStyle(textAreaDescriptionElement, 'height', `${textAreaDescriptionElement.scrollHeight}px`);
+		if (this.location === 'Manizales') {
+			console.log('scrollHeight', textAreaDescriptionElement.scrollHeight);
+			console.log('offsetHeight', textAreaDescriptionElement.offsetHeight);
+			console.log('clientHeight', textAreaDescriptionElement.clientHeight);
+		}
+		this.renderer.setStyle(textAreaDescriptionElement, 'height', `auto`); // Recalculate the scrollHeight (Fix the bug passing from small to large screen)
+		this.renderer.setStyle(textAreaDescriptionElement, 'height', `${textAreaDescriptionElement.scrollHeight}px`); // Set the height of the textarea to match its scrollHeight
 	}
 
 	ngAfterViewInit(): void {
