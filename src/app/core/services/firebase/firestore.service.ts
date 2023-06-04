@@ -92,6 +92,7 @@ export class FirestoreService {
 	getDocumentsByVehicleLicense(
 		collectionName: string,
 		vehicleLicense: string,
+		ownerUID: string,
 		orderValue: { prop: string; order: OrderByDirection }
 	): Observable<DocumentData[]> {
 		// Reference of the collection in the Firestore
@@ -100,6 +101,7 @@ export class FirestoreService {
 		const documentQuery = query(
 			collectionRef,
 			where('vehicleLicense', '==', vehicleLicense),
+			where('ownerUID', '==', ownerUID),
 			orderBy(orderValue.prop, orderValue.order)
 		);
 		return from(getDocs(documentQuery)).pipe(
