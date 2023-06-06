@@ -2,6 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ThemeSwitcherComponent } from '@shared/components/theme-switcher/theme-switcher.component';
+import { EllipsisPipe } from '@shared/pipes/ellipsis.pipe';
 import { AlertComponent } from './components/alert/alert.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { FooterFixedBarComponent } from './components/footer-fixed-bar/footer-fixed-bar.component';
@@ -24,6 +25,7 @@ import { VehicleLabelPipe } from './pipes/vehicle-label.pipe';
 		FormFooterButtonsComponent,
 		FooterFixedBarComponent,
 		FormLayoutComponent,
+		EllipsisPipe,
 	],
 	imports: [CommonModule, FormsModule, NgOptimizedImage],
 	exports: [
@@ -38,6 +40,7 @@ import { VehicleLabelPipe } from './pipes/vehicle-label.pipe';
 		FormFooterButtonsComponent,
 		FooterFixedBarComponent,
 		FormLayoutComponent,
+		EllipsisPipe,
 	],
 })
 export class SharedModule {}

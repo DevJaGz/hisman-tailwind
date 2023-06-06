@@ -1,6 +1,56 @@
 <section class="card bg-base-100 dark:bg-neutral-900 shadow-md px-4 py-5 rounded-lg">
 	<div class="flex items-center justify-between">
-		<p class="font-bold text-lg">{{ name }}</p>
+		<p class="font-bold text-lg whitespace-nowrap overflow-hidden text-ellipsis pr-4">{{ name }}</p>
+		<div class="flex gap-4 sm:gap-6">
+			<span
+				class="cursor-pointer tooltip tooltip-left"
+				data-tip="Editar Mantenimiento">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="icon icon-tabler icon-tabler-pencil"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					stroke-width="2"
+					stroke="currentColor"
+					fill="none"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<path
+						stroke="none"
+						d="M0 0h24v24H0z"
+						fill="none"></path>
+					<path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+					<path d="M13.5 6.5l4 4"></path>
+				</svg>
+			</span>
+			<label
+				[for]="name"
+				class="cursor-pointer tooltip tooltip-left"
+				data-tip="Eliminar Mantenimiento">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="icon icon-tabler icon-tabler-trash"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					stroke-width="2"
+					stroke="currentColor"
+					fill="none"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<path
+						stroke="none"
+						d="M0 0h24v24H0z"
+						fill="none"></path>
+					<path d="M4 7l16 0"></path>
+					<path d="M10 11l0 6"></path>
+					<path d="M14 11l0 6"></path>
+					<path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+					<path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+				</svg>
+			</label>
+		</div>
 	</div>
 	<p>{{ date | date : defaultFormat }}</p>
 	<div class="flex">
@@ -16,3 +66,30 @@
 		<div>{{ price | number : '1.0-0' }} <span class="font-bold">COP</span></div>
 	</div>
 </section>
+
+<!-- REMOVE VEHICLE MODAL ******* -->
+<input
+	type="checkbox"
+	[id]="name"
+	class="modal-toggle" />
+<div class="modal">
+	<div class="modal-box">
+		<h3 class="font-bold text-lg">Eliminar Mantenimiento</h3>
+		<p class="py-4">
+			¿Seguro que quiere eliminar el mantenimiento <strong>{{ name | ellipsis : 30 }}</strong> ?
+		</p>
+		<div class="modal-action gap-4">
+			<label
+				[for]="name"
+				class="btn btn-outline"
+				>CANCELAR</label
+			>
+			<label
+				[for]="name"
+				class="btn"
+				>SI, ELIMINAR</label
+			>
+		</div>
+	</div>
+</div>
+<!-- ******* -->
