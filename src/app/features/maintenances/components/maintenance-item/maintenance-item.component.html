@@ -1,8 +1,9 @@
 <section class="card bg-base-100 dark:bg-neutral-900 shadow-md px-4 py-5 rounded-lg">
 	<div class="flex items-center justify-between">
 		<p class="font-bold text-lg whitespace-nowrap overflow-hidden text-ellipsis pr-4">{{ name }}</p>
-		<div class="flex gap-4 sm:gap-6">
+		<div class="flex gap-4">
 			<span
+				(click)="editMaintenance()"
 				class="cursor-pointer tooltip tooltip-left"
 				data-tip="Editar Mantenimiento">
 				<svg
@@ -67,7 +68,7 @@
 	</div>
 </section>
 
-<!-- REMOVE VEHICLE MODAL ******* -->
+<!-- REMOVE MODAL ******* -->
 <input
 	type="checkbox"
 	[id]="name"

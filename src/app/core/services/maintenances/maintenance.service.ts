@@ -18,7 +18,7 @@ export class MaintenanceService implements MaintenanceRepository {
 
 	getMaintenancesByVehicleLicense$(vehicleLicense: string): Observable<IMaintenance[]> {
 		const owner = this.appStateService.selectOwnerState;
-		const maintenances = this.firestoreService.getDocumentsByVehicleLicense(
+		const maintenances = this.firestoreService.getDocumentsByVehicleLicenseAndOwnerUID(
 			this.collectionName,
 			vehicleLicense,
 			owner.uid,

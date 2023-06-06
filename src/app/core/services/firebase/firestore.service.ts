@@ -89,7 +89,7 @@ export class FirestoreService {
 		);
 	}
 
-	getDocumentsByVehicleLicense(
+	getDocumentsByVehicleLicenseAndOwnerUID(
 		collectionName: string,
 		vehicleLicense: string,
 		ownerUID: string,
@@ -106,7 +106,10 @@ export class FirestoreService {
 		);
 		return from(getDocs(documentQuery)).pipe(
 			map(querySnapshot => {
-				return querySnapshot.docs.map(doc => doc.data());
+				return querySnapshot.docs.map(doc => ({
+					...doc.data(),
+					id: doc.id,
+				}));
 			})
 		);
 	}

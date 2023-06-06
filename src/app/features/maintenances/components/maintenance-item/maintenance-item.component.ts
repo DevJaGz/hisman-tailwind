@@ -8,6 +8,7 @@ import {
 	Renderer2,
 	ViewChild,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DEFAULT_DATE_FORMAT } from '@core/constants/app-state.constant';
 import { IMaintenance } from '@core/interfaces/maintenance.interface';
 
@@ -48,7 +49,13 @@ export class MaintenanceItemComponent implements AfterViewInit {
 		return this.maintenance?.technicianName || 'No especificado.';
 	}
 
-	constructor(private renderer: Renderer2) {}
+	editMaintenance(): void {
+		console.log('Maintenance', this.maintenance);
+
+		// this.router.navigate(['1'], { relativeTo: this.route });
+	}
+
+	constructor(private renderer: Renderer2, private router: Router, private route: ActivatedRoute) {}
 
 	private setHeightTextArea(): void {
 		const textAreaDescriptionElement = this.textAreaDescription.nativeElement;
